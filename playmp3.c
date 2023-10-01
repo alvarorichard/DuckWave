@@ -2,6 +2,53 @@
 #include <ao/ao.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <mpg123.h>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+
+int isSpacePressed() {
+    struct termios oldt, newt;
+    int ch;
+    int oldf;
+
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+    ch = getchar();
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    fcntl(STDIN_FILENO, F_SETFL, oldf);
+
+    if(ch == ' ')
+        return 1;
+
+    return 0;
+}
+
+void play(PlayMP3* mp3) {
+    int isPaused = 0;
+    printf("\033[33;1m\u256B6 Playing The Song: \033[35;1m%s\033[m\n", mp3->track);
+    while (mpg123_read(mp3->mh, mp3->buffer, mp3->buffer_size, &mp3->done) == MPG123_OK) {
+        if (isSpacePressed()) {
+            isPaused = !isPaused;
+            // Espere um pouco após detectar a tecla espaço para evitar detecções múltiplas.
+            usleep(300000); // 300ms
+        }
+
+        if (!isPaused) {
+            ao_play(mp3->dev, mp3->buffer, mp3->done);
+        } else {
+            usleep(100000); // 100ms
+        }
+    }
+}
+
 
 void init_PlayMP3(PlayMP3* mp3){
     ao_initialize();
@@ -30,12 +77,12 @@ void setMusic(PlayMP3* mp3, char*track){
 
 
 
-void play(PlayMP3* mp3) {
-    printf("\033[33;1m\u256B6 Playing The Song: \033[35;1m%s\033[m\n", mp3->track);
-    while (mpg123_read(mp3->mh, mp3->buffer, mp3->buffer_size, &mp3->done) == MPG123_OK) {
-        ao_play(mp3->dev, mp3->buffer, mp3->done);
-    }
-}
+// void play(PlayMP3* mp3) {
+//     printf("\033[33;1m\u256B6 Playing The Song: \033[35;1m%s\033[m\n", mp3->track);
+//     while (mpg123_read(mp3->mh, mp3->buffer, mp3->buffer_size, &mp3->done) == MPG123_OK) {
+//         ao_play(mp3->dev, mp3->buffer, mp3->done);
+//     }
+// }
     
 
 void cleanup_PlayMP3(PlayMP3 *mp3){
@@ -50,5 +97,10 @@ void cleanup_PlayMP3(PlayMP3 *mp3){
     }
     
 
+}
+
+void stop(PlayMP3* mp3){
+    cleanup_PlayMP3(mp3);
+    exit(0);
 }
 
