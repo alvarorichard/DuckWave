@@ -6,7 +6,7 @@ int main(){
     PlayMP3 mp3;
     init_PlayMP3(&mp3);
     //add your mp3 file to the project folder and change the name here
-    setMusic(&mp3, "slayer-cult.mp3");
+    setMusic(&mp3, "add you music here .mp3");
     play(&mp3);
     cleanup_PlayMP3(&mp3);
     return 0;
