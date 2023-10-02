@@ -26,6 +26,16 @@ sudo apt-get install libmpg123-dev libao-dev
 ```bash
 clang main.c playmp3.c -o playmp3 -lmpg123 -lao                      
 ```
+### Compiling the Code with the Script
+```bash
+chmod +x install.sh
+```
+ Run the script:
+```bash
+./install.sh
+```
+
+
 This will create an executable called mp3player in your current directory.
 
 ## Usage
