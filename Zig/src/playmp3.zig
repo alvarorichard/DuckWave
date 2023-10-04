@@ -1,5 +1,6 @@
 const std = @import("std");
 const playlib = @import("playlib.zig");
+
 const c = @cImport({
     @cInclude("ao/ao.h");
     @cInclude("stdio.h");
@@ -10,7 +11,6 @@ const c = @cImport({
     @cInclude("unistd.h");
     @cInclude("fcntl.h");
 });
-
 
 pub fn isSpacePressed() bool {
     var oldt: c.termios = undefined;
@@ -32,10 +32,12 @@ pub fn isSpacePressed() bool {
     return ch == ' ';
 }
 
-pub fn play(mp3: *playlib.PlayMP3) void {
-    var isPaused: c.int = 0;
-    std.debug.print("\x1b[33;1m\u{256B6} Playing The Song: \x1b[35;1m{}\x1b[m\n", .{ mp3.track });
 
+pub fn play(mp3: *playlib.PlayMP3) void {
+    var isPaused: i32 = 0;
+    std.debug.print("\x1b[33;1m\u{256B6} Playing The Song: \x1b[35;1m{s}\x1b[m\n", .{ mp3.track });
+
+    //std.debug.print("\x1b[33;1m\u{256B6} Playing The Song: \x1b[35;1m{}\x1b[m\n", .{ mp3.track });
     while (c.mpg123_read(mp3.mh, mp3.buffer, mp3.buffer_size, &mp3.done) == c.MPG123_OK) {
         if (isSpacePressed()) {
             isPaused = if (isPaused == 0) 1 else 0;  // toggle isPaused
@@ -51,29 +53,32 @@ pub fn play(mp3: *playlib.PlayMP3) void {
 }
 
 pub fn init_PlayMP3(mp3: *playlib.PlayMP3) void {
-    var err: c.int = 0;
-    var driver: c.ao_driver_info = undefined;
-
-    c.mpg123_init();
+    var err: i32 = 0;
+    mp3.driver = c.ao_default_driver_id();
+ const result = c.mpg123_init();
+ if (result != c.MPG123_OK) {
+    std.debug.print("Error initializing mpg123: {}\n", .{result});
+    return; // or handle the error in some other way
+}
     mp3.mh = c.mpg123_new(null, &err);
     mp3.buffer_size = c.mpg123_outblock(mp3.mh);
     mp3.buffer = std.mem.alloc(u8, mp3.buffer_size) orelse unreachable;
     c.ao_initialize();
-
-    driver = c.ao_default_driver_info();
-    mp3.dev = c.ao_open_live(driver, mp3.format, &mp3.dev_info);
+    mp3.dev = c.ao_open_live(mp3.driver, mp3.format, &mp3.dev_info);
 }
 
 pub fn setMusic(mp3: *playlib.PlayMP3, track: []const u8) void {
-    var err: c.int = 0;
+    var err: i32 = 0;
     _ = err;
-    var buffer: []u8 = undefined;
-    var buffer_size: c.size_t = 0;
-    var done: c.size_t = 0;
+    var buffer_size: usize = 0;
+    var done: usize = 0;
+mp3.track = @ptrCast([*c]u8, track.ptr);
 
-    mp3.track = track;
+
+   // mp3.track = track.ptr;
+    mp3.track_len = track.len;
     buffer_size = c.mpg123_outblock(mp3.mh);
-    buffer = std.mem.alloc(u8, buffer_size) orelse unreachable;
+    mp3.buffer = std.mem.alloc(u8, buffer_size) orelse unreachable;
 
     mp3.fd = c.open(c.strLit(mp3.track), c.O_RDONLY);
     c.mpg123_open_fd(mp3.mh, mp3.fd);
@@ -82,8 +87,9 @@ pub fn setMusic(mp3: *playlib.PlayMP3, track: []const u8) void {
     mp3.format.rate = mp3.rate;
     mp3.format.channels = mp3.channels;
     mp3.format.byte_format = c.AO_FMT_NATIVE;
-    mp3.format.matrix = 0;
+    mp3.format.matrix = null;
 
     c.mpg123_seek(mp3.mh, 0, c.SEEK_SET);
-    c.mpg123_read(mp3.mh, buffer, buffer_size, &done);
+    c.mpg123_read(mp3.mh, mp3.buffer, buffer_size, &done);
 }
+
