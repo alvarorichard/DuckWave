@@ -1,6 +1,7 @@
 const std = @import("std");
 const playlib = @import("playlib.zig");
 
+
 const c = @cImport({
     @cInclude("ao/ao.h");
     @cInclude("stdio.h");
@@ -72,7 +73,15 @@ pub fn setMusic(mp3: *playlib.PlayMP3, track: []const u8) void {
     _ = err;
     var buffer_size: usize = 0;
     var done: usize = 0;
-mp3.track = @ptrCast([*c]u8, track.ptr);
+
+    // use@as(i64, @intCast(value))
+
+    mp3.track = @as(i64, @intCast(track));
+
+    //mp3.track = @as64(int, track.ptr);
+    
+  
+//mp3.track = @ptrCast([*c]u8, track.ptr);
 
 
    // mp3.track = track.ptr;
