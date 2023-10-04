@@ -1,10 +1,19 @@
+const std = @import("std");
+
 const c = @cImport({
-    @cInclude("mpg123.h");
-    @cInclude("ao/ao.h");
     @cInclude("stddef.h");
+    @cInclude("ao/ao.h");
+    @cInclude("stdio.h");
+    @cInclude("stdlib.h");
+    @cInclude("mpg123.h");
+    @cInclude("string.h");
+    @cInclude("termios.h");
+    @cInclude("unistd.h");
+    @cInclude("fcntl.h");
 });
 
 pub const PlayMP3 = struct {
+
     buffer_size: usize,
     done: usize,
     driver: c.int,
@@ -17,10 +26,6 @@ pub const PlayMP3 = struct {
     buffer: [*c]u8,
     format: c.ao_sample_format,
     dev: *c.ao_device,
+    
 };
-
-pub fn init_PlayMP3(mp3: *PlayMP3) void;
-pub fn setMusic(mp3: *PlayMP3, track: [*c]u8) void;
-pub fn play(mp3: *PlayMP3) void;
-pub fn cleanup_PlayMP3(mp3: *PlayMP3) void;
 
