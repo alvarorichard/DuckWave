@@ -80,9 +80,9 @@ pub fn setMusic(mp3: *playlib.PlayMP3, track: []const u8) void {
 
     //mp3.track = @as64(int, track.ptr);
     
-  
-//mp3.track = @ptrCast([*c]u8, track.ptr);
 
+//mp3.track = @ptrCast([*c]u8, track.ptr);
+  mp3.track = @as([*c]u8, @ptrCast(track.ptr));
 
    // mp3.track = track.ptr;
     mp3.track_len = track.len;
