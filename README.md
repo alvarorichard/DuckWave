@@ -61,4 +61,4 @@ This will create an executable called mp3player in your current directory.
 
 * Handle errors effectively in your application, especially where resources are initialized and used.
 * Avoid memory and resource leaks by freeing unused resources.
-* Please Don t Run a zig because its test reewrite program 
+* Please do not run the code in Zig, it is still in testing and development. It is the same project but rewritten in Zig. Please do not consider the Zig code
