@@ -1,17 +1,9 @@
 const std = @import("std");
 const playlib = @import("playlib.zig");
+const c  = @import("c.zig");
 
 
-const c = @cImport({
-    @cInclude("ao/ao.h");
-    @cInclude("stdio.h");
-    @cInclude("stdlib.h");
-    @cInclude("mpg123.h");
-    @cInclude("string.h");
-    @cInclude("termios.h");
-    @cInclude("unistd.h");
-    @cInclude("fcntl.h");
-});
+
 
 pub fn isSpacePressed() bool {
     var oldt: c.termios = undefined;
