@@ -12,7 +12,7 @@ else
 fi
 
 echo "Compilando com $COMPILER..."
-$COMPILER -o mp3player main.c playmp3.c -lmpg123 -lao
+$COMPILER -o playaudio main.c playmp3.c -lavformat -lavcodec -lswresample -lao -lavutil    
 
 if [ $? -eq 0 ]; then
     echo "Compilação concluída com sucesso!"

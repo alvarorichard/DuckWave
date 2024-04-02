@@ -2,12 +2,20 @@
 #include <ao/ao.h>
 #include <stdio.h>
 
-int main(){
-    PlayMP3 mp3;
-    init_PlayMP3(&mp3);
-    //add your mp3 file to the project folder and change the name here
-    setMusic(&mp3, "add you music here .mp3");
-    play(&mp3);
-    cleanup_PlayMP3(&mp3);
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <audio_file>\n", argv[0]);
+        return 1;
+    }
+
+    char *filename = argv[1];
+
+    PlayAudio audio;
+    init_PlayAudio(&audio);
+    setMusicAudio(&audio, filename);
+    playAudio(&audio);
+    cleanup_PlayAudio(&audio);
+
     return 0;
 }

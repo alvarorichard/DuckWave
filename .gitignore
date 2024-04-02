@@ -1,2 +1,10 @@
 /zig-cache
 /zig-out
+# valgrind output
+/valgrind-out 
+# vgcore files
+/vgcore.*
+# formatos de audio .mp3, .wav, .flac, etc
+*.mp3
+*.wav
+*.flac
