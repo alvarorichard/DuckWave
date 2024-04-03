@@ -12,8 +12,8 @@ else
 fi
 
 echo "Compilando com $COMPILER..."
-$COMPILER -o playaudio main.c playmp3.c -lavformat -lavcodec -lswresample -lao -lavutil
-
+#$COMPILER -o playaudio main.c playmp3.c -lavformat -lavcodec -lswresample -lao -lavutil
+$COMPILER -o playaudio main.c playmp3.c -Ilibao/include -Llibao/lib -Wl,-Bstatic -lao -Wl,-Bdynamic -lavformat -lavcodec -lswresample -lavutil -lm -lpthread -lz -lssl -lcrypto
 if [ $? -eq 0 ]; then
 	echo "Compilação concluída com sucesso!"
 else
