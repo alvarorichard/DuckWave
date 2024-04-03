@@ -16,15 +16,17 @@ Ensure you have the following libraries installed:
 
 * `libmpg123`
 * `libao`
-  
+* `libavcodec`
+* `libavformat`
+
 On Debian/Ubuntu systems, you can install these using:
 
 ```bash
-sudo apt-get install libmpg123-dev libao-dev
+sudo apt-get install libmpg123-dev libao-dev libavcodec-dev libavformat-dev
 ```
 ### Compiling the Code
 ```bash
-clang main.c playmp3.c -o playmp3 -lmpg123 -lao                      
+clang main.c playmp3.c -o playmp3 -lmpg123 -lao -Bstatic                     
 ```
 ### Compiling the Code with the Script
 ```bash
