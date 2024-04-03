@@ -1,6 +1,7 @@
-// playmp3.h
+// playmp3.
+#pragma ONCE
 
-#pragma once
+// DEBUG
 
 #include <ao/ao.h>
 #include <libavcodec/avcodec.h>
@@ -21,19 +22,18 @@ typedef struct {
 } PlayMP3;
 
 typedef struct {
-    AVFormatContext *formatCtx;
-    AVCodecContext *codecCtx;
-    AVPacket *packet;
-    AVFrame *frame;
-    SwrContext *swrCtx;
-    uint8_t *buffer;
-    size_t buffer_size; // Adicionado
-    int streamIndex;
-    ao_device *dev;
-    ao_sample_format format;
-    int isPaused;
+  AVFormatContext *formatCtx;
+  AVCodecContext *codecCtx;
+  AVPacket *packet;
+  AVFrame *frame;
+  SwrContext *swrCtx;
+  uint8_t *buffer;
+  size_t buffer_size; // Adicionado
+  int streamIndex;
+  ao_device *dev;
+  ao_sample_format format;
+  int isPaused;
 } PlayAudio;
-
 
 void init_PlayMP3(PlayMP3 *mp3);
 void setMusic(PlayMP3 *mp3, char *track);

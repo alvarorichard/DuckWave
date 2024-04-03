@@ -36,18 +36,18 @@ int isSpacePressed() {
   return 0;
 }
 
-void init_PlayAudio(PlayAudio* audio) {
-    // av_register_all(); // Removido
-    ao_initialize();
-    audio->formatCtx = NULL;
-    audio->codecCtx = NULL;
-    audio->packet = av_packet_alloc();
-    audio->frame = av_frame_alloc();
-    audio->swrCtx = NULL;
-    audio->buffer = NULL;
-    audio->streamIndex = -1;
-    audio->dev = NULL;
-    audio->isPaused = 0;
+void init_PlayAudio(PlayAudio *audio) {
+  // av_register_all(); // Removido
+  ao_initialize();
+  audio->formatCtx = NULL;
+  audio->codecCtx = NULL;
+  audio->packet = av_packet_alloc();
+  audio->frame = av_frame_alloc();
+  audio->swrCtx = NULL;
+  audio->buffer = NULL;
+  audio->streamIndex = -1;
+  audio->dev = NULL;
+  audio->isPaused = 0;
 }
 
 void setMusicAudio(PlayAudio *audio, char *filename) {
@@ -77,8 +77,8 @@ void setMusicAudio(PlayAudio *audio, char *filename) {
 
   AVCodecParameters *codecpar =
       audio->formatCtx->streams[audio->streamIndex]->codecpar;
- // AVCodec *codec = avcodec_find_decoder(codecpar->codec_id);
- const AVCodec *codec = avcodec_find_decoder(codecpar->codec_id);
+  // AVCodec *codec = avcodec_find_decoder(codecpar->codec_id);
+  const AVCodec *codec = avcodec_find_decoder(codecpar->codec_id);
 
   if (!codec) {
     fprintf(stderr, "Could not find codec\n");
@@ -103,10 +103,9 @@ void setMusicAudio(PlayAudio *audio, char *filename) {
 
   audio->format.bits = 16;
   audio->format.rate = audio->codecCtx->sample_rate;
-  //audio->format.channels = audio->codecCtx->channels;
-  //audio->format.channels = codecpar->channels;
-      audio->format.channels = codecpar->channels;
-
+  // audio->format.channels = audio->codecCtx->channels;
+  // audio->format.channels = codecpar->channels;
+  audio->format.channels = codecpar->channels;
 
   audio->format.byte_format = AO_FMT_NATIVE;
   audio->format.matrix = 0;
@@ -116,14 +115,11 @@ void setMusicAudio(PlayAudio *audio, char *filename) {
     exit(1);
   }
 
- audio->swrCtx = swr_alloc_set_opts(NULL,
-                                   av_get_default_channel_layout(audio->format.channels),
-                                   AV_SAMPLE_FMT_S16,
-                                   audio->format.rate,
-                                   av_get_default_channel_layout(codecpar->channels),
-                                   codecpar->format,
-                                   codecpar->sample_rate,
-                                   0, NULL);
+  audio->swrCtx = swr_alloc_set_opts(
+      NULL, av_get_default_channel_layout(audio->format.channels),
+      AV_SAMPLE_FMT_S16, audio->format.rate,
+      av_get_default_channel_layout(codecpar->channels), codecpar->format,
+      codecpar->sample_rate, 0, NULL);
 
   if (!audio->swrCtx) {
     fprintf(stderr, "Could not allocate resampler context\n");
@@ -136,121 +132,69 @@ void setMusicAudio(PlayAudio *audio, char *filename) {
   }
 }
 
-// void playAudio(PlayAudio *audio) {
-//   int ret;
-//   while (av_read_frame(audio->formatCtx, audio->packet) >= 0) {
-//     if (audio->packet->stream_index == audio->streamIndex) {
-//       ret = avcodec_send_packet(audio->codecCtx, audio->packet);
-//       if (ret < 0) {
-//         fprintf(stderr, "Error sending a packet for decoding\n");
-//         break;
-//       }
-
-//       while (ret >= 0) {
-//         ret = avcodec_receive_frame(audio->codecCtx, audio->frame);
-//         if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) {
-//           break;
-//         } else if (ret < 0) {
-//           fprintf(stderr, "Error during decoding\n");
-//           break;
-//         }
-
-//         if (isSpacePressed()) {
-//           audio->isPaused = !audio->isPaused;
-//           usleep(300000); // 300ms
-//         }
-
-//         if (!audio->isPaused) {
-//           // Convert the frame to the desired output format and play it
-//           uint8_t *out[2] = {audio->buffer, NULL};
-//           int out_count = (int64_t)audio->frame->nb_samples *
-//                               audio->format.rate /
-//                               audio->codecCtx->sample_rate +
-//                           256;
-//           int out_size = av_samples_get_buffer_size(
-//               NULL, audio->format.channels, out_count, AV_SAMPLE_FMT_S16, 0);
-//           if (!audio->buffer || audio->buffer_size < out_size) {
-//             audio->buffer_size = out_size;
-//             audio->buffer =
-//                 (uint8_t *)realloc(audio->buffer, audio->buffer_size);
-//           }
-
-//           int len = swr_convert(audio->swrCtx, out, out_count,
-//                                 (const uint8_t **)audio->frame->data,
-//                                 audio->frame->nb_samples);
-//           if (len < 0) {
-//             fprintf(stderr, "Swr convert error\n");
-//             break;
-//           }
-
-//           ao_play(audio->dev, (char *)audio->buffer,
-//                   len * audio->format.channels *
-//                       av_get_bytes_per_sample(AV_SAMPLE_FMT_S16));
-//         } else {
-//           usleep(100000); // 100ms
-//         }
-//       }
-//     }
-//     av_packet_unref(audio->packet);
-//   }
-// }
-
 void playAudio(PlayAudio *audio) {
-    int ret;
-    // Estimativa do número máximo de amostras de saída por quadro
-    int max_out_samples_per_frame = audio->format.rate; // Supondo 1 segundo de áudio por quadro como caso extremo
-    // Calcula o tamanho do buffer de saída necessário
-    int out_size = av_samples_get_buffer_size(NULL, audio->format.channels, max_out_samples_per_frame, AV_SAMPLE_FMT_S16, 0);
-    // Aloca o buffer de saída
-    audio->buffer = (uint8_t *)malloc(out_size);
-    if (!audio->buffer) {
-        fprintf(stderr, "Could not allocate output buffer\n");
-        exit(1);
-    }
+  int ret;
+  // Estimativa do número máximo de amostras de saída por quadro
+  int max_out_samples_per_frame =
+      audio->format
+          .rate; // Supondo 1 segundo de áudio por quadro como caso extremo
+  // Calcula o tamanho do buffer de saída necessário
+  int out_size = av_samples_get_buffer_size(NULL, audio->format.channels,
+                                            max_out_samples_per_frame,
+                                            AV_SAMPLE_FMT_S16, 0);
+  // Aloca o buffer de saída
+  audio->buffer = (uint8_t *)malloc(out_size);
+  if (!audio->buffer) {
+    fprintf(stderr, "Could not allocate output buffer\n");
+    exit(1);
+  }
 
-    while (av_read_frame(audio->formatCtx, audio->packet) >= 0) {
-        if (audio->packet->stream_index == audio->streamIndex) {
-            ret = avcodec_send_packet(audio->codecCtx, audio->packet);
-            if (ret < 0) {
-                fprintf(stderr, "Error sending a packet for decoding\n");
-                break;
-            }
+  while (av_read_frame(audio->formatCtx, audio->packet) >= 0) {
+    if (audio->packet->stream_index == audio->streamIndex) {
+      ret = avcodec_send_packet(audio->codecCtx, audio->packet);
+      if (ret < 0) {
+        fprintf(stderr, "Error sending a packet for decoding\n");
+        break;
+      }
 
-            while (ret >= 0) {
-                ret = avcodec_receive_frame(audio->codecCtx, audio->frame);
-                if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) {
-                    break;
-                } else if (ret < 0) {
-                    fprintf(stderr, "Error during decoding\n");
-                    break;
-                }
-
-                if (isSpacePressed()) {
-                    audio->isPaused = !audio->isPaused;
-                    usleep(300000); // 300ms
-                }
-
-                if (!audio->isPaused) {
-                    uint8_t *out[2] = {audio->buffer, NULL};
-                    int len = swr_convert(audio->swrCtx, out, max_out_samples_per_frame, (const uint8_t **)audio->frame->data, audio->frame->nb_samples);
-                    if (len < 0) {
-                        fprintf(stderr, "Swr convert error\n");
-                        break;
-                    }
-
-                    ao_play(audio->dev, (char *)audio->buffer, len * audio->format.channels * av_get_bytes_per_sample(AV_SAMPLE_FMT_S16));
-                } else {
-                    usleep(100000); // 100ms
-                }
-            }
+      while (ret >= 0) {
+        ret = avcodec_receive_frame(audio->codecCtx, audio->frame);
+        if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) {
+          break;
+        } else if (ret < 0) {
+          fprintf(stderr, "Error during decoding\n");
+          break;
         }
-        av_packet_unref(audio->packet);
+
+        if (isSpacePressed()) {
+          audio->isPaused = !audio->isPaused;
+          usleep(300000); // 300ms
+        }
+
+        if (!audio->isPaused) {
+          uint8_t *out[2] = {audio->buffer, NULL};
+          int len = swr_convert(audio->swrCtx, out, max_out_samples_per_frame,
+                                (const uint8_t **)audio->frame->data,
+                                audio->frame->nb_samples);
+          if (len < 0) {
+            fprintf(stderr, "Swr convert error\n");
+            break;
+          }
+
+          ao_play(audio->dev, (char *)audio->buffer,
+                  len * audio->format.channels *
+                      av_get_bytes_per_sample(AV_SAMPLE_FMT_S16));
+        } else {
+          usleep(100000); // 100ms
+        }
+      }
     }
+    av_packet_unref(audio->packet);
+  }
 
-    // Libera o buffer de saída após o término da reprodução
-    free(audio->buffer);
+  // Libera o buffer de saída após o término da reprodução
+  free(audio->buffer);
 }
-
 
 void cleanup_PlayAudio(PlayAudio *audio) {
   if (audio->dev) {

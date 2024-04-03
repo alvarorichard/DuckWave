@@ -1,22 +1,22 @@
 #!/bin/bash
 
 # Verifica se clang está disponível
-if command -v clang &> /dev/null; then
-    COMPILER="clang"
+if command -v clang &>/dev/null; then
+	COMPILER="clang"
 # Caso contrário, verifica se gcc está disponível
-elif command -v gcc &> /dev/null; then
-    COMPILER="gcc"
+elif command -v gcc &>/dev/null; then
+	COMPILER="gcc"
 else
-    echo "Nenhum compilador (clang ou gcc) encontrado no sistema."
-    exit 1
+	echo "Nenhum compilador (clang ou gcc) encontrado no sistema."
+	exit 1
 fi
 
 echo "Compilando com $COMPILER..."
-$COMPILER -o playaudio main.c playmp3.c -lavformat -lavcodec -lswresample -lao -lavutil    
+$COMPILER -o playaudio main.c playmp3.c -lavformat -lavcodec -lswresample -lao -lavutil
 
 if [ $? -eq 0 ]; then
-    echo "Compilação concluída com sucesso!"
+	echo "Compilação concluída com sucesso!"
 else
-    echo "Erro durante a compilação."
-    exit 1
+	echo "Erro durante a compilação."
+	exit 1
 fi
