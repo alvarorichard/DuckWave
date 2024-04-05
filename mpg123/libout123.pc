@@ -1,0 +1,12 @@
+prefix=/home/krone/CSoundWave/mpg123/../vendor/mpg123_1.26.4
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libout123
+Description: A streaming audio output API derived from mpg123
+Requires: 
+Version: 1.32.5
+Libs: -L${libdir} -lout123 
+Libs.private:  -lm  
+Cflags: -I${includedir} 

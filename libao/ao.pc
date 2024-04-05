@@ -1,0 +1,16 @@
+# libao pkg-config source file
+
+prefix=/home/krone/CSoundWave/libao/../vendor/libao_1.2.2
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: ao
+Description: ao is a cross-platform audio output library
+Version: 1.2.2
+Requires:
+Conflicts:
+Libs: -L${libdir} -lao
+Libs.private: -lpthread 
+Cflags: -I${includedir}
+

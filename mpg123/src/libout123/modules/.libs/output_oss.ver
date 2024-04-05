@@ -1,0 +1,3 @@
+{ global:
+mpg123_output_module_info;
+local: *; };
