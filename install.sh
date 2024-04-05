@@ -21,9 +21,9 @@ fi
 ## ter em sua raís, o prefixo dessa configuração será alguma pasata no
 ## diretório local ($3).
 function vendorize_local_library {
-	local LIB_NAME="${1}"     #1: string
-	local LIB_VERSION="${2}"  #2: string
-	local VENDOR_DIR="${3}"   #3: string
+	local LIB_NAME="${1}"     #$1: string - Nome da pasta da lib local
+	local LIB_VERSION="${2}"  #$2: string - Versao da lib, arbitrário
+	local VENDOR_DIR="${3}"   #$3: string - Nome da pasta de vendor local
 
 	printf "\033[36m[LOGG]\033[m "
 	echo "Configurando a biblioteca ${LIB_NAME}"
