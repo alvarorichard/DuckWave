@@ -15,10 +15,13 @@ else
 	exit 1
 fi
 
+## Essa função vai rodar o script `./configure` que a biblioteca (`$1`) deve
+## ter em sua raís, o prefixo dessa configuração será alguma pasata no
+## diretório local ($3).
 function vendorize_local_library {
-	local LIB_NAME="${1}"
-	local LIB_VERSION="${2}"
-	local VENDOR_DIR="${3}"
+	local LIB_NAME="${1}"     #1: string
+	local LIB_VERSION="${2}"  #2: string
+	local VENDOR_DIR="${3}"   #3: string
 
 	printf "\033[36m[LOGG]\033[m "
 	echo "Configurando a biblioteca ${LIB_NAME}"
