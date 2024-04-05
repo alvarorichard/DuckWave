@@ -11,6 +11,22 @@ else
 	exit 1
 fi
 
+# TODO: Ver se é realmente necessário rodar o make
+
+echo "Configurando as bibliotecas locais"
+
+mkdir -p vendor/{libao_1.2.2,mpg123_1.26.4}
+
+cd libao
+./configure --prefix=$(pwd)/../vendor/libao_1.2.2
+# make
+cd ..
+
+cd mpg123
+./configure --prefix=$(pwd)/../vendor/mpg123_1.26.4
+# make
+cd ..
+
 echo "Compilando com $COMPILER..."
 
 # TODO: Incluir as bibliotecas da mpg123 localmente também
