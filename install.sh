@@ -9,8 +9,10 @@ then
 	COMPILER=$(which clang)
 
 else
+	echo
 	printf "\033[31m[ERRO]\033[m "
-	printf "Os compiladores 'clang' e 'gcc' não foram encontrados\n"
+	echo "Os compiladores 'clang' e 'gcc' não foram encontrados"
+	echo
 
 	exit 1
 fi
@@ -36,13 +38,17 @@ vendorize_local_library "libao"  "1.2.2"  "vendor"
 vendorize_local_library "mpg123" "1.26.4" "vendor"
 
 function compile_statically {
+	echo
 	printf "\033[33m[WARN]\033[m "
 	echo "Esse script não consegue compilar estaticamente ainda!"
+	echo
 }
 
 function compile_shared {
+	echo
 	printf "\033[36m[LOGG]\033[m "
 	echo "Compilando a aplicação com as bibliotecas do sistema"
+	echo
 
 	eval "${COMPILER} playmp3.c main.c \
 		-lao -lavcodec -lavformat -lswresample -lavutil \
