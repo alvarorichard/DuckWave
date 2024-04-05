@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# Verifica se clang está disponível
-if command -v clang &>/dev/null; then
-	COMPILER="clang"
-# Caso contrário, verifica se gcc está disponível
-elif command -v gcc &>/dev/null; then
-	COMPILER="gcc"
+if clang -v &> /dev/null
+then
+	COMPILER=$(which clang)
+
+elif gcc -v &> /dev/null
+then
+	COMPILER=$(which clang)
+
 else
-	echo "Nenhum compilador (clang ou gcc) encontrado no sistema."
+	printf "\033[31m[ERRO]\033[m "
+	printf "Os compiladores 'clang' e 'gcc' não foram encontrados\n"
+
 	exit 1
 fi
 
