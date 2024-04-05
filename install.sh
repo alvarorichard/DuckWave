@@ -35,10 +35,20 @@ function vendorize_local_library {
 vendorize_local_library "libao"  "1.2.2"  "vendor"
 vendorize_local_library "mpg123" "1.26.4" "vendor"
 
-echo "Compilando com $COMPILER..."
+function compile_statically {
+	printf "\033[33m[WARN]\033[m "
+	echo "Esse script não consegue compilar estaticamente ainda!"
+}
 
-$COMPILER clang playmp3.c main.c \
-	-Wl,-Bstatic \
-	-I./vendor/libao_1.2.2/include -L./vendor/libao_1.2.2/.libs -lao \
-	-lavcodec -lavformat -lswresample -lavutil \
-	-o playmp3
+function compile_shared {
+	printf "\033[36m[LOGG]\033[m "
+	echo "Compilando a aplicação com as bibliotecas do sistema"
+
+	eval "${COMPILER} playmp3.c main.c \
+		-lao -lavcodec -lavformat -lswresample -lavutil \
+		-o playmp3"
+}
+
+[ "${1}" = "--static" ] || [ "${1}" = "-s" ] &&
+	compile_statically ||
+	compile_shared
