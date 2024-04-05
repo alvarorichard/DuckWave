@@ -15,21 +15,22 @@ else
 	exit 1
 fi
 
-# TODO: Ver se é realmente necessário rodar o make
+function vendorize_local_library {
+	local LIB_NAME="${1}"
+	local LIB_VERSION="${2}"
+	local VENDOR_DIR="${3}"
 
-echo "Configurando as bibliotecas locais"
+	printf "\033[36m[LOGG]\033[m "
+	echo "Configurando a biblioteca ${LIB_NAME}"
 
-mkdir -p vendor/{libao_1.2.2,mpg123_1.26.4}
+	local TARGET_PATH="${VENDOR_DIR}/${LIB_NAME}_${LIB_VERSION}"
 
-cd libao
-./configure --prefix=$(pwd)/../vendor/libao_1.2.2
-# make
-cd ..
+	mkdir -vp "${TARGET_PATH}"
+	bash -c "cd ${LIB_NAME} && ./configure --prefix=\$(pwd)/../${TARGET_PATH}"
+}
 
-cd mpg123
-./configure --prefix=$(pwd)/../vendor/mpg123_1.26.4
-# make
-cd ..
+vendorize_local_library "libao"  "1.2.2"  "vendor"
+vendorize_local_library "mpg123" "1.26.4" "vendor"
 
 echo "Compilando com $COMPILER..."
 
