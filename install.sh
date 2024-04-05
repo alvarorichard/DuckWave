@@ -34,6 +34,9 @@ function vendorize_local_library {
 	bash -c "cd ${LIB_NAME} && ./configure --prefix=\$(pwd)/../${TARGET_PATH}"
 }
 
+#TODO: Seria melhor se a pasta `/vendor` tivese a sua própria variável
+#TODO: Essa variável poderia ser alterada com uma opção `--vendor`
+#TODO: O usuário deve ter a opção de skippar essa parte se ele quiser
 vendorize_local_library "libao"  "1.2.2"  "vendor"
 vendorize_local_library "mpg123" "1.26.4" "vendor"
 
@@ -50,11 +53,18 @@ function compile_shared {
 	echo "Compilando a aplicação com as bibliotecas do sistema"
 	echo
 
+	#TODO: Colocar os arquivos de source em constantes também
+	#TODO: Colocar as flagas de bibliotecas em uma constante
+	#TODO: Deixar o usuário usar flags customizadas se ele quiser
+	#TODO: Por o nome do binário final em uma variável
+	#TODO: O path  do binário pode ser customizado pelo usuário também
 	eval "${COMPILER} playmp3.c main.c \
 		-lao -lavcodec -lavformat -lswresample -lavutil \
 		-o playmp3"
 }
 
+#TODO: A função de compilar estaticamente não deve funcionar com `--skip-conf`
+#TODO: Criar a opção `--static` do jeito certo
 [ "${1}" = "--static" ] || [ "${1}" = "-s" ] &&
 	compile_statically ||
 	compile_shared
