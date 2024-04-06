@@ -11,3 +11,9 @@
 *.ogg
 
 *.o
+
+# Pastas com as bibliotecas já vendorizadas pro ambiente de desenvolvimento do
+# usuário, o conteúdo delas pode diferenciar entre alguém que está trabalhando
+# num Windows e outro num Linux, por exemplo.
+#/vendor
+#/.vendor
