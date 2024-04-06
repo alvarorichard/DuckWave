@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# RODAR COM SUDO O SCRIPT
+
 if clang -v &>/dev/null; then
 	COMPILER=$(which clang)
 elif gcc -v &>/dev/null; then
@@ -12,6 +14,20 @@ else
 	exit 1
 fi
 
+#function vendorize_local_library {
+#	local LIB_NAME="${1}"
+#	local LIB_VERSION="${2}"
+#	local VENDOR_DIR="${3}"
+
+#	printf "\033[36m[LOG]\033[m "
+#	echo "Configuring library ${LIB_NAME}"
+
+#	local TARGET_PATH="${VENDOR_DIR}/${LIB_NAME}_${LIB_VERSION}"
+
+#	mkdir -vp "${TARGET_PATH}"
+#	bash -c "cd ${LIB_NAME} && ./configure --prefix=\$(pwd)/../${TARGET_PATH} && make && make install"
+#}
+
 function vendorize_local_library {
 	local LIB_NAME="${1}"
 	local LIB_VERSION="${2}"
@@ -23,7 +39,7 @@ function vendorize_local_library {
 	local TARGET_PATH="${VENDOR_DIR}/${LIB_NAME}_${LIB_VERSION}"
 
 	mkdir -vp "${TARGET_PATH}"
-	bash -c "cd ${LIB_NAME} && ./configure --prefix=\$(pwd)/../${TARGET_PATH} && make && make install"
+	bash -c "cd ${LIB_NAME} && ./configure --prefix=\$(pwd)/../${TARGET_PATH} && make clean && make && make install"
 }
 
 VENDOR_DIR="vendor"

@@ -27,13 +27,12 @@ uname -v = #1 SMP PREEMPT_DYNAMIC Debian 6.1.76-1 (2024-02-01)
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/linuxbrew/.linuxbrew/bin/
-PATH: /home/linuxbrew/.linuxbrew/sbin/
-PATH: /home/krone/.cargo/bin/
+PATH: /usr/local/sbin/
 PATH: /usr/local/bin/
+PATH: /usr/sbin/
 PATH: /usr/bin/
+PATH: /sbin/
 PATH: /bin/
-PATH: /usr/games/
 
 
 ## ----------- ##

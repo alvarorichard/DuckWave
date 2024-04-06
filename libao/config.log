@@ -27,13 +27,12 @@ uname -v = #1 SMP PREEMPT_DYNAMIC Debian 6.1.76-1 (2024-02-01)
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/linuxbrew/.linuxbrew/bin
-PATH: /home/linuxbrew/.linuxbrew/sbin
-PATH: /home/krone/.cargo/bin
+PATH: /usr/local/sbin
 PATH: /usr/local/bin
+PATH: /usr/sbin
 PATH: /usr/bin
+PATH: /sbin
 PATH: /bin
-PATH: /usr/games
 
 
 ## ----------- ##
@@ -348,7 +347,7 @@ configure:11437: checking how to hardcode library paths into programs
 configure:11462: result: immediate
 configure:11556: checking for shl_load
 configure:11556: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/ccyZRQmf.o: in function `main':
+/usr/bin/ld: /tmp/ccTzVyy2.o: in function `main':
 /home/krone/CSoundWave/libao/conftest.c:57: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11556: $? = 1
@@ -468,7 +467,7 @@ configure:11839: $? = 0
 configure:11857: result: yes
 configure:11862: checking whether a statically linked program can dlopen itself
 configure:11942: gcc -o conftest -g -O2  -DHAVE_DLFCN_H  -Wl,--export-dynamic -static conftest.c   >&5
-/usr/bin/ld: /tmp/cchCMIZh.o: in function `main':
+/usr/bin/ld: /tmp/cc2ixZgM.o: in function `main':
 /home/krone/CSoundWave/libao/conftest.c:11921: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 configure:11945: $? = 0
 conftest: undefined symbol: _fnord
