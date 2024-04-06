@@ -1307,9 +1307,25 @@ configure:18239: result: no
 configure:18496: checking if we want feature report function
 configure:18513: result: yes
 configure:18822: checking for pkg-config
-configure:18860: result: no
+configure:18845: found /usr/bin/pkg-config
+configure:18857: result: /usr/bin/pkg-config
+configure:18882: checking pkg-config is at least version 0.9.0
+configure:18885: result: yes
 configure:19245: checking for libpulse-simple
-configure:19304: result: no
+configure:19252: $PKG_CONFIG --exists --print-errors "libpulse-simple"
+Package libpulse-simple was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpulse-simple.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'libpulse-simple', required by 'virtual:world', not found
+configure:19255: $? = 1
+configure:19269: $PKG_CONFIG --exists --print-errors "libpulse-simple"
+Package libpulse-simple was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpulse-simple.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'libpulse-simple', required by 'virtual:world', not found
+configure:19272: $? = 1
+configure:19286: result: no
+Package 'libpulse-simple', required by 'virtual:world', not found
 configure:19002: checking for snd_pcm_open in -lasound
 configure:19025: gcc -o conftest -g -O2   conftest.c -lasound  -lm  >&5
 /usr/bin/ld: cannot find -lasound: No such file or directory
@@ -1897,7 +1913,20 @@ configure: failed program was:
 | #include <AudioToolbox/AudioToolbox.h>
 configure:19934: result: no
 configure:19820: checking for sndio
-configure:19879: result: no
+configure:19827: $PKG_CONFIG --exists --print-errors "sndio"
+Package sndio was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sndio.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sndio', required by 'virtual:world', not found
+configure:19830: $? = 1
+configure:19844: $PKG_CONFIG --exists --print-errors "sndio"
+Package sndio was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sndio.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sndio', required by 'virtual:world', not found
+configure:19847: $? = 1
+configure:19861: result: no
+Package 'sndio', required by 'virtual:world', not found
 configure:19891: checking for sun/audioio.h
 configure:19891: gcc -c -g -O2  conftest.c >&5
 conftest.c:115:10: fatal error: sun/audioio.h: No such file or directory
@@ -2510,13 +2539,39 @@ configure:19809: result: no
 configure:20078: checking for os2.h
 configure:20078: result: no
 configure:19318: checking for esound
-configure:19377: result: no
+configure:19325: $PKG_CONFIG --exists --print-errors "esound"
+Package esound was not found in the pkg-config search path.
+Perhaps you should add the directory containing `esound.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'esound', required by 'virtual:world', not found
+configure:19328: $? = 1
+configure:19342: $PKG_CONFIG --exists --print-errors "esound"
+Package esound was not found in the pkg-config search path.
+Perhaps you should add the directory containing `esound.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'esound', required by 'virtual:world', not found
+configure:19345: $? = 1
+configure:19359: result: no
+Package 'esound', required by 'virtual:world', not found
 configure:19123: checking for sem_post in -lpthread
 configure:19146: gcc -o conftest -g -O2   conftest.c -lpthread  -lm  >&5
 configure:19146: $? = 0
 configure:19156: result: yes
 configure:19162: checking for jack
-configure:19221: result: no
+configure:19169: $PKG_CONFIG --exists --print-errors "jack"
+Package jack was not found in the pkg-config search path.
+Perhaps you should add the directory containing `jack.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'jack', required by 'virtual:world', not found
+configure:19172: $? = 1
+configure:19186: $PKG_CONFIG --exists --print-errors "jack"
+Package jack was not found in the pkg-config search path.
+Perhaps you should add the directory containing `jack.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'jack', required by 'virtual:world', not found
+configure:19189: $? = 1
+configure:19203: result: no
+Package 'jack', required by 'virtual:world', not found
 configure:19452: checking for Pa_Initialize in -lportaudio
 configure:19475: gcc -o conftest -g -O2   conftest.c -lportaudio  -lm  >&5
 /usr/bin/ld: cannot find -lportaudio: No such file or directory
@@ -2623,9 +2678,35 @@ configure: failed program was:
 | }
 configure:19485: result: no
 configure:19557: checking for sdl2
-configure:19616: result: no
+configure:19564: $PKG_CONFIG --exists --print-errors "sdl2"
+Package sdl2 was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sdl2.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sdl2', required by 'virtual:world', not found
+configure:19567: $? = 1
+configure:19581: $PKG_CONFIG --exists --print-errors "sdl2"
+Package sdl2 was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sdl2.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sdl2', required by 'virtual:world', not found
+configure:19584: $? = 1
+configure:19598: result: no
+Package 'sdl2', required by 'virtual:world', not found
 configure:19630: checking for sdl
-configure:19689: result: no
+configure:19637: $PKG_CONFIG --exists --print-errors "sdl"
+Package sdl was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sdl.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sdl', required by 'virtual:world', not found
+configure:19640: $? = 1
+configure:19654: $PKG_CONFIG --exists --print-errors "sdl"
+Package sdl was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sdl.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sdl', required by 'virtual:world', not found
+configure:19657: $? = 1
+configure:19671: result: no
+Package 'sdl', required by 'virtual:world', not found
 configure:19703: checking for AuOpenServer in -laudio
 configure:19726: gcc -o conftest -g -O2   conftest.c -laudio  -lm  >&5
 /usr/bin/ld: cannot find -laudio: No such file or directory
@@ -3514,8 +3595,10 @@ config.status:1469: creating libout123.pc
 config.status:1469: creating libsyn123.pc
 config.status:1469: creating mpg123.spec
 config.status:1469: creating src/config.h
+config.status:1650: src/config.h is unchanged
 config.status:1698: executing depfiles commands
 config.status:1775: cd .       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
+make: Nothing to be done for 'am--depfiles'.
 config.status:1780: $? = 0
 config.status:1698: executing libtool commands
 
@@ -3666,6 +3749,7 @@ ac_cv_path_EGREP='/usr/bin/grep -E'
 ac_cv_path_FGREP='/usr/bin/grep -F'
 ac_cv_path_GREP=/usr/bin/grep
 ac_cv_path_SED=/usr/bin/sed
+ac_cv_path_ac_pt_PKG_CONFIG=/usr/bin/pkg-config
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_lt_DD=/usr/bin/dd
 ac_cv_path_mkdir=/usr/bin/mkdir
@@ -4054,7 +4138,7 @@ PACKAGE_TARNAME='mpg123'
 PACKAGE_URL=''
 PACKAGE_VERSION='1.32.5'
 PATH_SEPARATOR=':'
-PKG_CONFIG=''
+PKG_CONFIG='/usr/bin/pkg-config'
 PKG_CONFIG_LIBDIR=''
 PKG_CONFIG_PATH=''
 PORTAUDIO_CFLAGS=''

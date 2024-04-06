@@ -348,7 +348,7 @@ configure:11437: checking how to hardcode library paths into programs
 configure:11462: result: immediate
 configure:11556: checking for shl_load
 configure:11556: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/ccZk7tz1.o: in function `main':
+/usr/bin/ld: /tmp/ccyZRQmf.o: in function `main':
 /home/krone/CSoundWave/libao/conftest.c:57: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11556: $? = 1
@@ -468,7 +468,7 @@ configure:11839: $? = 0
 configure:11857: result: yes
 configure:11862: checking whether a statically linked program can dlopen itself
 configure:11942: gcc -o conftest -g -O2  -DHAVE_DLFCN_H  -Wl,--export-dynamic -static conftest.c   >&5
-/usr/bin/ld: /tmp/ccnyqGG3.o: in function `main':
+/usr/bin/ld: /tmp/cchCMIZh.o: in function `main':
 /home/krone/CSoundWave/libao/conftest.c:11921: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 configure:11945: $? = 0
 conftest: undefined symbol: _fnord
@@ -1523,7 +1523,9 @@ configure:14129: result: no
 configure:14129: checking for audio/audiolib.h
 configure:14129: result: no
 configure:14176: checking for pkg-config
-configure:14207: result: no
+configure:14194: found /usr/bin/pkg-config
+configure:14207: result: /usr/bin/pkg-config
+configure:14225: checking for  libpulse-simple >= 0.9 
 configure:14430: checking that generated files are newer than configure
 configure:14436: result: done
 configure:14523: creating ./config.status
@@ -1663,7 +1665,7 @@ ac_cv_path_EGREP='/usr/bin/grep -E'
 ac_cv_path_ESD_CONFIG=no
 ac_cv_path_FGREP='/usr/bin/grep -F'
 ac_cv_path_GREP=/usr/bin/grep
-ac_cv_path_PKG_CONFIG=no
+ac_cv_path_PKG_CONFIG=/usr/bin/pkg-config
 ac_cv_path_SED=/usr/bin/sed
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_mkdir=/usr/bin/mkdir
@@ -1836,7 +1838,7 @@ PACKAGE_TARNAME='libao'
 PACKAGE_URL=''
 PACKAGE_VERSION='1.2.2'
 PATH_SEPARATOR=':'
-PKG_CONFIG='no'
+PKG_CONFIG='/usr/bin/pkg-config'
 PLUGIN_LDFLAGS='-export-dynamic -avoid-version'
 PROFILE='-pg -g -O20 -ffast-math -D_REENTRANT -fsigned-char  -DAO_BUILDING_LIBAO'
 PULSE_CFLAGS=''
