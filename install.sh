@@ -1,47 +1,70 @@
 #!/bin/bash
 
-# Verifica se clang está disponível
-if command -v clang &>/dev/null; then
-	COMPILER="clang"
-# Caso contrário, verifica se gcc está disponível
-elif command -v gcc &>/dev/null; then
-	COMPILER="gcc"
+if clang -v &> /dev/null
+then
+	COMPILER=$(which clang)
+
+elif gcc -v &> /dev/null
+then
+	COMPILER=$(which clang)
+
 else
-	echo "Nenhum compilador (clang ou gcc) encontrado no sistema."
+	echo
+	printf "\033[31m[ERRO]\033[m "
+	echo "Os compiladores 'clang' e 'gcc' não foram encontrados"
+	echo
+
 	exit 1
 fi
 
-# TODO: Ver se é realmente necessário rodar o make
+## Essa função vai rodar o script `./configure` que a biblioteca (`$1`) deve
+## ter em sua raís, o prefixo dessa configuração será alguma pasata no
+## diretório local ($3).
+function vendorize_local_library {
+	local LIB_NAME="${1}"     #$1: string - Nome da pasta da lib local
+	local LIB_VERSION="${2}"  #$2: string - Versao da lib, arbitrário
+	local VENDOR_DIR="${3}"   #$3: string - Nome da pasta de vendor local
 
-echo "Configurando as bibliotecas locais"
+	printf "\033[36m[LOGG]\033[m "
+	echo "Configurando a biblioteca ${LIB_NAME}"
 
-mkdir -p vendor/{libao_1.2.2,mpg123_1.26.4}
+	local TARGET_PATH="${VENDOR_DIR}/${LIB_NAME}_${LIB_VERSION}"
 
-cd libao
-./configure --prefix=$(pwd)/../vendor/libao_1.2.2
-# make
-cd ..
+	mkdir -vp "${TARGET_PATH}"
+	bash -c "cd ${LIB_NAME} && ./configure --prefix=\$(pwd)/../${TARGET_PATH}"
+}
 
-cd mpg123
-./configure --prefix=$(pwd)/../vendor/mpg123_1.26.4
-# make
-cd ..
+#TODO: Seria melhor se a pasta `/vendor` tivese a sua própria variável
+#TODO: Essa variável poderia ser alterada com uma opção `--vendor`
+#TODO: O usuário deve ter a opção de skippar essa parte se ele quiser
+vendorize_local_library "libao"  "1.2.2"  "vendor"
+vendorize_local_library "mpg123" "1.26.4" "vendor"
 
-echo "Compilando com $COMPILER..."
+function compile_statically {
+	echo
+	printf "\033[33m[WARN]\033[m "
+	echo "Esse script não consegue compilar estaticamente ainda!"
+	echo
+}
 
-# TODO: Incluir as bibliotecas da mpg123 localmente também
-# TODO: Fazer o processo de compilação linkar as bibliotecas estaticamente
+function compile_shared {
+	echo
+	printf "\033[36m[LOGG]\033[m "
+	echo "Compilando a aplicação com as bibliotecas do sistema"
+	echo
 
-$COMPILER clang playmp3.c main.c \
-	-Wl,-Bstatic \
-	-I./vendor/libao_1.2.2/include -L./vendor/libao_1.2.2/.libs -lao \
-	-lavcodec -lavformat -lswresample -lavutil \
-	-o playmp3
+	#TODO: Colocar os arquivos de source em constantes também
+	#TODO: Colocar as flagas de bibliotecas em uma constante
+	#TODO: Deixar o usuário usar flags customizadas se ele quiser
+	#TODO: Por o nome do binário final em uma variável
+	#TODO: O path  do binário pode ser customizado pelo usuário também
+	eval "${COMPILER} playmp3.c main.c \
+		-lao -lavcodec -lavformat -lswresample -lavutil \
+		-o playmp3"
+}
 
-#$COMPILER -o playaudio main.c playmp3.c -Ilibao/include -Llibao/lib -Wl,-Bstatic -lao -Wl,-Bdynamic -lavformat -lavcodec -lswresample -lavutil -lm -lpthread -lz -lssl -lcrypto
-if [ $? -eq 0 ]; then
-	echo "Compilação concluída com sucesso!"
-else
-	echo "Erro durante a compilação."
-	exit 1
-fi
+#TODO: A função de compilar estaticamente não deve funcionar com `--skip-conf`
+#TODO: Criar a opção `--static` do jeito certo
+[ "${1}" = "--static" ] || [ "${1}" = "-s" ] &&
+	compile_statically ||
+	compile_shared
