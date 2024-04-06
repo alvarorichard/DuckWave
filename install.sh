@@ -76,3 +76,16 @@ if [ "${1}" = "--static" ] || [ "${1}" = "-s" ]; then
 else
 	compile_shared
 fi
+
+
+# sudo docker run --rm -it \
+#     --device /dev/snd \
+#     -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
+#     -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
+#     -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+#     --group-add $(getent group audio | cut -d: -f3) \
+#     teste /bin/bash
+#cd /usr/src/app/CSoundWave
+#./install.sh --static
+#./playmp3 /usr/src/app/CSoundWave/audios/1.mp3
+
