@@ -659,7 +659,7 @@ finish_cmds='PATH="\$PATH:/sbin" ldconfig -n $libdir'
 finish_eval=''
 hardcode_into_libs='yes'
 sys_lib_search_path_spec='/usr/lib/gcc/x86_64-linux-gnu/12 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib '
-sys_lib_dlsearch_path_spec='/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/local/lib/i386-linux-gnu /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /usr/local/lib/i686-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /usr/local/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /lib32 /usr/lib32 '
+sys_lib_dlsearch_path_spec='/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/local/lib/i386-linux-gnu /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /usr/local/lib/i686-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /usr/local/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu '
 hardcode_action='immediate'
 enable_dlopen='yes'
 enable_dlopen_self='yes'
@@ -824,17 +824,17 @@ S["LIBOBJS"]=""
 S["PLUGIN_LDFLAGS"]="-export-dynamic -avoid-version"
 S["HAVE_SOLARIS_FALSE"]=""
 S["HAVE_SOLARIS_TRUE"]="#"
-S["HAVE_PULSE_FALSE"]=""
-S["HAVE_PULSE_TRUE"]="#"
-S["PULSE_LIBS"]=""
-S["PULSE_CFLAGS"]=""
+S["HAVE_PULSE_FALSE"]="#"
+S["HAVE_PULSE_TRUE"]=""
+S["PULSE_LIBS"]="-lpulse-simple -lpulse -pthread "
+S["PULSE_CFLAGS"]="-D_REENTRANT "
 S["NAS_LIBS"]=""
 S["NAS_CFLAGS"]=""
 S["HAVE_NAS_FALSE"]=""
 S["HAVE_NAS_TRUE"]="#"
 S["X_EXTRA_LIBS"]=""
 S["X_LIBS"]=""
-S["X_PRE_LIBS"]=""
+S["X_PRE_LIBS"]=" -lSM -lICE"
 S["X_CFLAGS"]=""
 S["XMKMF"]=""
 S["HAVE_MACOSX_FALSE"]=""
@@ -853,13 +853,13 @@ S["HAVE_AIX_AUDIO_FALSE"]=""
 S["HAVE_AIX_AUDIO_TRUE"]="#"
 S["HAVE_ROAR_AUDIO_FALSE"]=""
 S["HAVE_ROAR_AUDIO_TRUE"]="#"
-S["HAVE_SNDIO_AUDIO_FALSE"]=""
-S["HAVE_SNDIO_AUDIO_TRUE"]="#"
+S["HAVE_SNDIO_AUDIO_FALSE"]="#"
+S["HAVE_SNDIO_AUDIO_TRUE"]=""
 S["HAVE_SUN_AUDIO_FALSE"]=""
 S["HAVE_SUN_AUDIO_TRUE"]="#"
-S["ALSA_LIBS"]=""
-S["HAVE_ALSA_FALSE"]=""
-S["HAVE_ALSA_TRUE"]="#"
+S["ALSA_LIBS"]="-lasound"
+S["HAVE_ALSA_FALSE"]="#"
+S["HAVE_ALSA_TRUE"]=""
 S["HAVE_OSS_FALSE"]="#"
 S["HAVE_OSS_TRUE"]=""
 S["HAVE_ESD_FALSE"]=""
@@ -971,7 +971,7 @@ S["DEFS"]="-DPACKAGE_NAME=\\\"libao\\\" -DPACKAGE_TARNAME=\\\"libao\\\" -DPACKAG
 "org\\\" -DPACKAGE_URL=\\\"\\\" -DPACKAGE=\\\"libao\\\" -DVERSION=\\\"1.2.2\\\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_"\
 "STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\\\".libs/\\\" -DHA"\
 "VE_DLFCN_H=1 -DHAVE_DLOPEN=1 -DHAVE_LIBPTHREAD=1 -DDLOPEN_FLAG=\\(RTLD_NOW\\ \\|\\ RTLD_GLOBAL\\) -DSHARED_LIB_EXT=\\\".so\\\" -DSIZEOF_SHORT=2 -DSIZEOF_INT="\
-"4 -DSIZEOF_LONG=8 -DHAVE_SYS_SOUNDCARD_H=1 -DX_DISPLAY_MISSING=1"
+"4 -DSIZEOF_LONG=8 -DHAVE_SYS_SOUNDCARD_H=1 -DBROKEN_OSS=1 -DHAVE_SNDIO_H=1"
 S["mandir"]="${datarootdir}/man"
 S["localedir"]="${datarootdir}/locale"
 S["libdir"]="${exec_prefix}/lib"

@@ -37,6 +37,9 @@
 /* Define if FIFO support is enabled. */
 #undef FIFO
 
+/* System setup enforces 64 bit offsets where 32 bit would be native. */
+#undef FORCED_OFF_64
+
 /* Define if frame index should be used. */
 #undef FRAME_INDEX
 
