@@ -1929,7 +1929,7 @@ AS = as
 AUTOCONF = ${SHELL} '/home/krone/CSoundWave/mpg123/build/missing' autoconf
 AUTOHEADER = ${SHELL} '/home/krone/CSoundWave/mpg123/build/missing' autoheader
 AUTOMAKE = ${SHELL} '/home/krone/CSoundWave/mpg123/build/missing' automake-1.16
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCAS = gcc
 CCASDEPMODE = depmode=gcc3

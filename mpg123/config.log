@@ -58,10 +58,8 @@ configure:3637: result: yes
 configure:3796: checking for a race-free mkdir -p
 configure:3840: result: /usr/bin/mkdir -p
 configure:3847: checking for gawk
-configure:3882: result: no
-configure:3847: checking for mawk
-configure:3868: found /usr/bin/mawk
-configure:3879: result: mawk
+configure:3868: found /usr/bin/gawk
+configure:3879: result: gawk
 configure:3890: checking whether make sets $(MAKE)
 configure:3913: result: yes
 configure:3943: checking whether make supports nested variables
@@ -3622,7 +3620,7 @@ ac_cv_path_ac_pt_PKG_CONFIG=/usr/bin/pkg-config
 ac_cv_path_install='/usr/bin/install -c'
 ac_cv_path_lt_DD=/usr/bin/dd
 ac_cv_path_mkdir=/usr/bin/mkdir
-ac_cv_prog_AWK=mawk
+ac_cv_prog_AWK=gawk
 ac_cv_prog_CPP='gcc -E'
 ac_cv_prog_ac_ct_AR=ar
 ac_cv_prog_ac_ct_CC=gcc
@@ -3713,7 +3711,7 @@ AS='as'
 AUTOCONF='${SHELL} '\''/home/krone/CSoundWave/mpg123/build/missing'\'' autoconf'
 AUTOHEADER='${SHELL} '\''/home/krone/CSoundWave/mpg123/build/missing'\'' autoheader'
 AUTOMAKE='${SHELL} '\''/home/krone/CSoundWave/mpg123/build/missing'\'' automake-1.16'
-AWK='mawk'
+AWK='gawk'
 BUILD_AIX_FALSE=''
 BUILD_AIX_TRUE='#'
 BUILD_ALIB_FALSE=''

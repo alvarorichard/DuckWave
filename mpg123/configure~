@@ -19232,21 +19232,21 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                JACK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "jack" 2>&1`
+	        JACK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "jack" 2>&1`
         else
-                JACK_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "jack" 2>&1`
+	        JACK_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "jack" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$JACK_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$JACK_PKG_ERRORS" >&5
 
-         HAVE_JACK="no" check_failed=yes
+	 HAVE_JACK="no" check_failed=yes
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-         HAVE_JACK="no" check_failed=yes
+	 HAVE_JACK="no" check_failed=yes
 else
-        JACK_CFLAGS=$pkg_cv_JACK_CFLAGS
-        JACK_LIBS=$pkg_cv_JACK_LIBS
+	JACK_CFLAGS=$pkg_cv_JACK_CFLAGS
+	JACK_LIBS=$pkg_cv_JACK_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
 
@@ -19315,24 +19315,24 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                PULSE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libpulse-simple" 2>&1`
+	        PULSE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libpulse-simple" 2>&1`
         else
-                PULSE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libpulse-simple" 2>&1`
+	        PULSE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libpulse-simple" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$PULSE_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$PULSE_PKG_ERRORS" >&5
 
-        HAVE_PULSE="no" check_failed=yes
+	HAVE_PULSE="no" check_failed=yes
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        HAVE_PULSE="no" check_failed=yes
+	HAVE_PULSE="no" check_failed=yes
 else
-        PULSE_CFLAGS=$pkg_cv_PULSE_CFLAGS
-        PULSE_LIBS=$pkg_cv_PULSE_LIBS
+	PULSE_CFLAGS=$pkg_cv_PULSE_CFLAGS
+	PULSE_LIBS=$pkg_cv_PULSE_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-        output_modules="$output_modules pulse" HAVE_PULSE="yes"
+	output_modules="$output_modules pulse" HAVE_PULSE="yes"
 fi
 		;;
 		esd)
@@ -19388,24 +19388,24 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                ESD_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "esound" 2>&1`
+	        ESD_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "esound" 2>&1`
         else
-                ESD_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "esound" 2>&1`
+	        ESD_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "esound" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$ESD_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$ESD_PKG_ERRORS" >&5
 
-        HAVE_ESD="no" check_failed=yes
+	HAVE_ESD="no" check_failed=yes
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        HAVE_ESD="no" check_failed=yes
+	HAVE_ESD="no" check_failed=yes
 else
-        ESD_CFLAGS=$pkg_cv_ESD_CFLAGS
-        ESD_LIBS=$pkg_cv_ESD_LIBS
+	ESD_CFLAGS=$pkg_cv_ESD_CFLAGS
+	ESD_LIBS=$pkg_cv_ESD_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-        output_modules="$output_modules esd" HAVE_ESD="yes"
+	output_modules="$output_modules esd" HAVE_ESD="yes"
 fi
 		;;
 		portaudio)
@@ -19627,24 +19627,24 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                SDL_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "sdl2" 2>&1`
+	        SDL_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "sdl2" 2>&1`
         else
-                SDL_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "sdl2" 2>&1`
+	        SDL_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "sdl2" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$SDL_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$SDL_PKG_ERRORS" >&5
 
-        HAVE_SDL="no" check_failed=yes
+	HAVE_SDL="no" check_failed=yes
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        HAVE_SDL="no" check_failed=yes
+	HAVE_SDL="no" check_failed=yes
 else
-        SDL_CFLAGS=$pkg_cv_SDL_CFLAGS
-        SDL_LIBS=$pkg_cv_SDL_LIBS
+	SDL_CFLAGS=$pkg_cv_SDL_CFLAGS
+	SDL_LIBS=$pkg_cv_SDL_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-        output_modules="$output_modules sdl" HAVE_SDL="yes"
+	output_modules="$output_modules sdl" HAVE_SDL="yes"
 fi
 			if ! test "$HAVE_SDL" = "yes"; then
 				check_failed=no
@@ -19700,24 +19700,24 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                SDL_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "sdl" 2>&1`
+	        SDL_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "sdl" 2>&1`
         else
-                SDL_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "sdl" 2>&1`
+	        SDL_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "sdl" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$SDL_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$SDL_PKG_ERRORS" >&5
 
-        HAVE_SDL="no" check_failed=yes
+	HAVE_SDL="no" check_failed=yes
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        HAVE_SDL="no" check_failed=yes
+	HAVE_SDL="no" check_failed=yes
 else
-        SDL_CFLAGS=$pkg_cv_SDL_CFLAGS
-        SDL_LIBS=$pkg_cv_SDL_LIBS
+	SDL_CFLAGS=$pkg_cv_SDL_CFLAGS
+	SDL_LIBS=$pkg_cv_SDL_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-        output_modules="$output_modules sdl" HAVE_SDL="yes"
+	output_modules="$output_modules sdl" HAVE_SDL="yes"
 fi
 			fi
 		;;
@@ -19890,24 +19890,24 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-                SNDIO_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "sndio" 2>&1`
+	        SNDIO_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "sndio" 2>&1`
         else
-                SNDIO_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "sndio" 2>&1`
+	        SNDIO_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "sndio" 2>&1`
         fi
-        # Put the nasty error message in config.log where it belongs
-        echo "$SNDIO_PKG_ERRORS" >&5
+	# Put the nasty error message in config.log where it belongs
+	echo "$SNDIO_PKG_ERRORS" >&5
 
-        HAVE_SNDIO="no" check_failed=yes
+	HAVE_SNDIO="no" check_failed=yes
 elif test $pkg_failed = untried; then
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-        HAVE_SNDIO="no" check_failed=yes
+	HAVE_SNDIO="no" check_failed=yes
 else
-        SNDIO_CFLAGS=$pkg_cv_SNDIO_CFLAGS
-        SNDIO_LIBS=$pkg_cv_SNDIO_LIBS
+	SNDIO_CFLAGS=$pkg_cv_SNDIO_CFLAGS
+	SNDIO_LIBS=$pkg_cv_SNDIO_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-        output_modules="$output_modules sndio" HAVE_SNDIO="yes"
+	output_modules="$output_modules sndio" HAVE_SNDIO="yes"
 fi
 		;;
 		sun)

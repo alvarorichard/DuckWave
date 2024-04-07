@@ -238,7 +238,7 @@ AS = as
 AUTOCONF = ${SHELL} /home/krone/CSoundWave/libao/missing autoconf
 AUTOHEADER = ${SHELL} /home/krone/CSoundWave/libao/missing autoheader
 AUTOMAKE = ${SHELL} /home/krone/CSoundWave/libao/missing automake-1.14
-AWK = mawk
+AWK = gawk
 BINDIR = 
 CC = gcc
 CCDEPMODE = depmode=gcc3
