@@ -8,6 +8,12 @@
 # /vendor
 # /.vendor
 
+# Pastas para desenvolvimento local
+/.env
+/env
+/.tmp
+/tmp
+
 # ARQUIVOS RELACIONADOS AO ZIG
 # ----------------------------
 
