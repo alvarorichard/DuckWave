@@ -1,14 +1,14 @@
 
 
 <p align="center">
-  <img src="https://i.imgur.com/CWGPzHO.png" alt="Imagem logo" />
+  <img src="https://i.imgur.com/Ex4LsbU.png" alt="Imagem logo" />
 </p>
 
-![GitHub license](https://img.shields.io/github/license/alvarorichard/CSoundWave)
-![GitHub languages top](https://img.shields.io/github/languages/top/alvarorichard/CSoundWave)
-![GitHub last commit](https://img.shields.io/github/last-commit/alvarorichard/CSoundWave)
+![GitHub license](https://img.shields.io/github/license/alvarorichard/DuckWave)
+![GitHub languages top](https://img.shields.io/github/languages/top/alvarorichard/DuckWave)
+![GitHub last commit](https://img.shields.io/github/last-commit/alvarorichard/DuckWave)
 
-CSOUNDWAVE is a straightforward audio player written in C, designed for simplicity and ease of use. It supports playing multiple audio formats and offers basic controls such as play, pause, and stop. The project is built with minimal dependencies and is focused on providing a user-friendly experience for playing audio files from the terminal.
+DUCKWAVE is a straightforward audio player written in C, designed for simplicity and ease of use. It supports playing multiple audio formats and offers basic controls such as play, pause, and stop. The project is built with minimal dependencies and is focused on providing a user-friendly experience for playing audio files from the terminal.
 
 
  ## Installation
