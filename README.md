@@ -65,4 +65,7 @@ Contributions to this project are welcome. Please follow these steps to contribu
 4. Push to the branch.
 5. Submit a pull request.
 
+<p align="center">
+  <img src="https://i.imgur.com/5nbPY1g.png" alt="Imagem logo" style="height: 100px;"/>
+</p>
 
