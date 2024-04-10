@@ -1,6 +1,6 @@
 #include "playmp3.h"
 #include <stdio.h>
-#include "miniaudio.h"
+#include "audio_tools/miniaudio.h"
 
 
 int main(int argc, char *argv[]) {
