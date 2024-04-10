@@ -17,21 +17,21 @@ void duckwave_default_playback_callback(ma_device* pDevice, void* pOutput, const
 }
 
 void duckwave_init_file_decoder(DuckWaveSoundData* dw_sdata, char* file) {
-  ma_result result;
+	ma_result result;
 
-  result = ma_decoder_init_file(file, NULL, &dw_sdata->decoder);
+	result = ma_decoder_init_file(file, NULL, &dw_sdata->decoder);
 
-  if (result != MA_SUCCESS) {
+	if (result != MA_SUCCESS) {
 		printf("\nCould not decode current %s file.\n", file);
-    printf("%s.\n\n", ma_result_description(result));
+		printf("%s.\n\n", ma_result_description(result));
 
-    exit(1);
-  }
+		exit(1);
+	}
 }
 
 void duckwave_init_device_playback(DuckWaveSoundData* dw_sdata) {
-  ma_decoder* decoder = &dw_sdata->decoder;
-  ma_device_config* device_config = &dw_sdata->device_config;
+	ma_decoder* decoder = &dw_sdata->decoder;
+	ma_device_config* device_config = &dw_sdata->device_config;
 
 	*device_config = ma_device_config_init(ma_device_type_playback);
 
@@ -43,34 +43,34 @@ void duckwave_init_device_playback(DuckWaveSoundData* dw_sdata) {
 }
 
 void duckwave_start_playsound_thread(DuckWaveSoundData* dw_sdata) {
-  ma_result result;
+	ma_result result;
 
-  ma_decoder* decoder = &dw_sdata->decoder;
+	ma_decoder* decoder = &dw_sdata->decoder;
 	ma_device* device = &dw_sdata->device;
-  ma_device_config* device_config = &dw_sdata->device_config;
-	
+	ma_device_config* device_config = &dw_sdata->device_config;
+
 	result = ma_device_init(NULL, device_config, device);
 
-  if (result != MA_SUCCESS) {
+	if (result != MA_SUCCESS) {
 		printf("\nCannot initilize device.\n");
-    printf("%s.\n\n", ma_result_description(result));
+		printf("%s.\n\n", ma_result_description(result));
 
 		ma_decoder_uninit(decoder);
 
-    exit(2);
-  }
+		exit(2);
+	}
 
 	result = ma_device_start(device);
 
-  if (result != MA_SUCCESS) {
+	if (result != MA_SUCCESS) {
 		printf("\nCannot start device.\n");
-    printf("%s.\n\n", ma_result_description(result));
+		printf("%s.\n\n", ma_result_description(result));
 
 		ma_device_uninit(device);
 		ma_decoder_uninit(decoder);
 
-    exit(3);
-  }
+		exit(3);
+	}
 }
 
 
