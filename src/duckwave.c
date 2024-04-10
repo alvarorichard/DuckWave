@@ -5,6 +5,17 @@
 
 #include "duckwave.h"
 
+void duckwave_default_playback_callback(ma_device* pDevice, void* pOutput, const void* _pInput, unsigned int frameCount) {
+	ma_decoder* pDecoder = pDevice->pUserData;
+
+	if (pDecoder == NULL)
+		return;
+
+	ma_decoder_read_pcm_frames(pDecoder, pOutput, frameCount, NULL);
+
+	(void)_pInput;
+}
+
 void duckwave_init_file_decoder(DuckWaveSoundData* dw_sdata, char* file) {
   ma_result result;
 
