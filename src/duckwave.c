@@ -33,6 +33,8 @@ void duckwave_init_device_playback(DuckWaveSoundData* dw_sdata) {
   ma_decoder* decoder = &dw_sdata->decoder;
   ma_device_config* device_config = &dw_sdata->device_config;
 
+	*device_config = ma_device_config_init(ma_device_type_playback);
+
 	device_config->playback.format = decoder->outputFormat;
 	device_config->playback.channels = decoder->outputChannels;
 	device_config->sampleRate = decoder->outputSampleRate;
