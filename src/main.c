@@ -1,19 +1,18 @@
-#include "playmp3.h"
+#include <stdbool.h>
 #include <stdio.h>
-#include "audio_tools/miniaudio.h"
 
+#include "duckwave.h"
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-        return 1;
-    }
+	DuckWaveSoundData dw_sdata;
 
-    PlayAudio audio;
-    init_PlayAudio(&audio);
-    setMusicAudio(&audio, argv[1]);
-    playAudio(&audio);
-    cleanup_PlayAudio(&audio);
+	duckwave_init_file_decoder(&dw_sdata, "music.flac");
+	duckwave_init_device_playback(&dw_sdata);
+	duckwave_start_playsound_thread(&dw_sdata);
 
-    return 0;
+	printf("The music should be playing by now.\n");
+
+	while (true) {}
+
+	return 0;
 }
