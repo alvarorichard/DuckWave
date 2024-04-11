@@ -4,9 +4,22 @@
 #include "duckwave.h"
 
 int main(int argc, char *argv[]) {
+	if (argc < 2) {
+		printf("You need to specify a song.\n");
+
+		return 1;
+
+	} else if (argc > 2) {
+		printf("Multiple song files are not allowed right now.\n");
+
+		return 2;
+	}
+
+	char* song_file = argv[1];
+
 	DuckWaveSoundData dw_sdata;
 
-	duckwave_init_file_decoder(&dw_sdata, "music.flac");
+	duckwave_init_file_decoder(&dw_sdata, song_file);
 	duckwave_init_device_playback(&dw_sdata);
 	duckwave_start_playsound_thread(&dw_sdata);
 
