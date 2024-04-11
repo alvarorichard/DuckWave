@@ -21,5 +21,5 @@ target("DuckWave")
     set_languages("c17")
 
     -- Add any necessary compile flags, if specific flags are needed
-      add_ldflags("-lm")
+      add_ldflags("-lm","-Wall" ,"-Wextra")
 

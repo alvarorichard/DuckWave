@@ -1,6 +1,8 @@
 #ifndef DUCKWAVE_H
 #define DUCKWAVE_H
 
+#include <stdio.h>
+#include <stdlib.h>
 
 
 

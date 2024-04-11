@@ -38,7 +38,7 @@ void duckwave_init_file_decoder(DuckWaveSoundData* dw_sdata, char* file) {
 		printf("\nCould not decode current %s file.\n", file);
 		printf("%s.\n\n", ma_result_description(result));
 
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -69,8 +69,8 @@ void duckwave_start_playsound_thread(DuckWaveSoundData* dw_sdata) {
 		printf("%s.\n\n", ma_result_description(result));
 
 		ma_decoder_uninit(decoder);
-
-		exit(2);
+    
+		exit(EXIT_FAILURE);
 	}
 
 	result = ma_device_start(device);
@@ -82,7 +82,7 @@ void duckwave_start_playsound_thread(DuckWaveSoundData* dw_sdata) {
 		ma_device_uninit(device);
 		ma_decoder_uninit(decoder);
 
-		exit(3);
+		exit(EXIT_FAILURE);
 	}
 }
 
