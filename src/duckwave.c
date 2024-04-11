@@ -3,7 +3,7 @@
 
 #define MINIAUDIO_IMPLEMENTATION
 
-#include "duckwave.h"
+#include "../include/duckwave.h"
 
 void generate_timestamp(float secs, char* res) {
 	int hours = (int)secs / 3600;

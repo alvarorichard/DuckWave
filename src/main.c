@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "duckwave.h"
+#include "../include/duckwave.h"
 
 int main(int argc, char *argv[]) {
 	if (argc < 2) {
