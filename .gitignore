@@ -16,6 +16,30 @@
 
 * .idea
 
+# ARQUIVOS GERADOS PELO XMAKE
+# ---------------------------
+
+# XMake build files
+.build/
+
+# Compiled binaries
+bin/
+
+# Temporary files
+.temp/
+
+# Generated documentation
+docs/
+
+# Dependency directories
+deps/
+
+# Ignore XMake configuration files
+xmake.lua
+
+# Ignore any other generated files or directories
+.xmake/
+
 # ARQUIVOS RELACIONADOS AO ZIG
 # ----------------------------
 
