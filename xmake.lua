@@ -18,7 +18,7 @@ target("DuckWave")
 
 
     -- Set C language standard, if needed (e.g., c99, c11)
-    set_languages("c11")
+    set_languages("c17")
 
     -- Add any necessary compile flags, if specific flags are needed
       add_ldflags("-lm")
