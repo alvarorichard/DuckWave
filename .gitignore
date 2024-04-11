@@ -87,3 +87,20 @@ dkms.conf
 # Binnary output files
 spinning-heart
 main
+
+
+# Arquivos binários gerados pelo GCC e Clang
+*.out
+*.exe
+*.o
+
+# Diretórios de cache do xmake
+.xmake/linux/x86_64/cache
+.xmake/ui.log
+.xmake/linux/x86_64/tmp
+
+# Diretório de saida do xmake
+build
+
+# arquivo do vscode
+.vscode/settings.json
