@@ -1,5 +1,4 @@
 // playmp3.c
-#include "playmp3.h"
 #include <fcntl.h>
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>

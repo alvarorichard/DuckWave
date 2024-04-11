@@ -1,4 +1,8 @@
-#pragma once
+#ifndef DUCKWAVE_H
+#define DUCKWAVE_H
+
+
+
 
 #include "./miniaudio.h"
 
@@ -48,3 +52,5 @@ void duckwave_init_device_playback(DuckWaveSoundData*);
  * os erros a medida que eles vão aparecendo.
  */
 void duckwave_start_playsound_thread(DuckWaveSoundData*);
+
+#endif

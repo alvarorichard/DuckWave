@@ -6,20 +6,17 @@
 #include "../include/duckwave.h"
 
 void generate_timestamp(float secs, char* res) {
-	int hours = (int)secs / 3600;
+    int hours = (int)secs / 3600;
+    secs = (int)secs % 3600;
+    int mins = (int)secs / 60;
+    secs = (int)secs % 60;
 
-	secs = (int)secs % 3600;
-
-	int mins = (int)secs / 60;
-
-	secs = (int)secs % 60;
-
-	if (hours > 0)
-		sprintf(res, "%d:%02d:%02.0f", hours, mins, secs);
-
-	else
-		sprintf(res, "%02d:%02.0f", mins, secs);
+    if (hours > 0)
+        snprintf(res, 128, "%d:%02d:%02.0f", hours, mins, secs);  // Assuming res has a size of 128
+    else
+        snprintf(res, 128, "%02d:%02.0f", mins, secs);  // Assuming res has a size of 128
 }
+
 
 void duckwave_default_playback_callback(ma_device* pDevice, void* pOutput, const void* _pInput, unsigned int frameCount) {
 	ma_decoder* pDecoder = pDevice->pUserData;

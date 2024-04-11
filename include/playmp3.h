@@ -1,5 +1,9 @@
 // playmp3.
-#pragma ONCE
+
+#ifndef PLAYMP3_h
+#define PLAYMP3_h
+
+
 
 // DEBUG
 
@@ -59,3 +63,5 @@ void init_PlayAudio(PlayAudio *audio);
 void setMusicAudio(PlayAudio *audio, char *filename);
 void playAudio(PlayAudio *audio);
 void cleanup_PlayAudio(PlayAudio *audio);
+
+#endif
