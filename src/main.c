@@ -25,13 +25,7 @@ int main(int argc, char *argv[]) {
 
 	///  NOTE: O código abixo é só pra testar o comportamento da aplicação.
 
-	if (!ma_device_is_started(&dw_sdata.device)) {
-		printf("Could not start the song.\n");
-
-		return 3;
-	}
-
-	float song_duration, song_cursor;
+	float song_duration, song_cursor = .0f;
 	char duration_timestamp[12], cursor_timestamp[12];
 
 	ma_data_source_get_length_in_seconds(&dw_sdata.decoder, &song_duration);
