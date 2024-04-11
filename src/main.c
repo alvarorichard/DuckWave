@@ -25,6 +25,12 @@ int main(int argc, char *argv[]) {
 
 	///  NOTE: O código abixo é só pra testar o comportamento da aplicação.
 
+	if (!ma_device_is_started(&dw_sdata.device)) {
+		printf("Could not start the song.\n");
+
+		return 3;
+	}
+
 	float song_duration, song_cursor;
 	char duration_timestamp[12], cursor_timestamp[12];
 
@@ -33,7 +39,7 @@ int main(int argc, char *argv[]) {
 
 	printf("\x1b[2J\x1b[?25h\x1b[?25l");  // clear the screen & hide cursor
 
-	while (ma_device_is_started(&dw_sdata.device)) {
+	while (song_cursor < song_duration) {
 		ma_data_source_get_cursor_in_seconds(&dw_sdata.decoder, &song_cursor);
 		generate_timestamp(song_cursor, cursor_timestamp);
 
@@ -41,6 +47,9 @@ int main(int argc, char *argv[]) {
 
 		printf("%s/%s\n", cursor_timestamp, duration_timestamp);
 	}
+
+	ma_device_uninit(&dw_sdata.device);
+	ma_decoder_uninit(&dw_sdata.decoder);
 
 	return 0;
 }
