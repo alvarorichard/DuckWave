@@ -14,6 +14,8 @@
 /.tmp
 /tmp
 
+* .idea
+
 # ARQUIVOS RELACIONADOS AO ZIG
 # ----------------------------
 
