@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 
 	printf("\x1b[2J\x1b[?25h\x1b[?25l");  // clear the screen & hide cursor
 
-	while (true) {
+	while (ma_device_is_started(&dw_sdata.device)) {
 		ma_data_source_get_cursor_in_seconds(&dw_sdata.decoder, &song_cursor);
 		generate_timestamp(song_cursor, cursor_timestamp);
 
