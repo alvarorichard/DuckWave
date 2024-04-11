@@ -50,7 +50,7 @@ This will create an executable called mp3player in your current directory.
 3. Compile the code.
 4. Run the executable:
 ```C
-./mp3player
+./mp3player your music.mp3
 ```
 >[!IMPORTANT]
 > Please note that this project is still under development and may be subject to changes and improvements.
