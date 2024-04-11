@@ -1,3 +1,11 @@
+<h4 align="center">
+    <p>
+        <b>Рortuguês</b> |
+        <a href="https://github.com/alvarorichard/DuckWave/blob/main/README.md">English</a>
+    </p>
+</h4>
+
+
 <p align="center">
   <img src="https://i.imgur.com/Ex4LsbU.png" alt="Imagem logo" />
 </p>
