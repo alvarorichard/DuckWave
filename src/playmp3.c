@@ -9,7 +9,7 @@
 #include <termios.h>
 #include <unistd.h>
 #define MINIAUDIO_IMPLEMENTATION
-#include "miniaudio.h"
+#include "audio_tools/miniaudio.h"
 
 
 

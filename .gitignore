@@ -1,19 +1,87 @@
-/zig-cache
-/zig-out
-# valgrind output
-/valgrind-out 
-# vgcore files
-/vgcore.*
-# formatos de audio .mp3, .wav, .flac, etc
+# Formatos de audio para teste
 *.mp3
 *.wav
 *.flac
 *.ogg
 
-*.o
+# Local para as bibliotecas vendorizadas
+# /vendor
+# /.vendor
 
-# Pastas com as bibliotecas já vendorizadas pro ambiente de desenvolvimento do
-# usuário, o conteúdo delas pode diferenciar entre alguém que está trabalhando
-# num Windows e outro num Linux, por exemplo.
-#/vendor
-#/.vendor
+# Pastas para desenvolvimento local
+/.env
+/env
+/.tmp
+/tmp
+
+# ARQUIVOS RELACIONADOS AO ZIG
+# ----------------------------
+
+/zig-cache
+/zig-out
+
+# GITIGNORE COMUM PARA PROJETOS EM C
+# ----------------------------------
+
+# Valgrind output
+/valgrind-out 
+
+# Vgcore files
+/vgcore.*
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Binnary output files
+spinning-heart
+main

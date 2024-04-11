@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
-#include "miniaudio.h"
+#include "audio_tools/miniaudio.h"
 
 typedef struct {
   size_t buffer_size, done;
