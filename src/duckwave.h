@@ -2,6 +2,13 @@
 
 #include "./miniaudio.h"
 
+/**
+ * Dado um tempo em segundos (`float`), essa função vai escrever na referencia
+ * (`char*`) esse mesmo tempo mas no formato `hh:mm:ss`. Valores esperados
+ * podem ser `72:43:05` ou `05:59`, por exemplo.
+ */
+void generate_timestamp(float, char*);
+
 ///  NOTE: Embaixo dessa função, deve haver outras similares; a documentação será a mesma.
 ///  WARN: Todas as funções com `callback` no nome serão executadas em uma thread separada.
 
