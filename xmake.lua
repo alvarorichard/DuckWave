@@ -1,4 +1,11 @@
-toolchain("DuckWave_Toolchain")
+set_xmakever("2.8.9")
+set_version("0.1.0", { build = "%Y%m%d%H%M" })
+
+set_allowedmodes("debug", "release")
+set_defaultmode("debug")
+add_rules("mode.debug", "mode.release")
+
+toolchain("dwtc")  -- recomended toolchain
     set_kind("standalone")
 
     set_toolset("cc", "clang")
@@ -6,20 +13,21 @@ toolchain("DuckWave_Toolchain")
     set_toolset("ld", "clang", "clang++")
 toolchain_end()
 
-target("DuckWave")
+target("duckwave")
     set_kind("binary")
-
-    -- TODO: In future, is better using globbing instead file to file
     add_includedirs("include")
-     
     add_files("src/main.c", "src/duckwave.c")
 
-    set_optimize("fastest")
+    if is_mode("release") then
+        set_optimize("fastest")
+        set_symbols("hidden")
 
+    elseif is_mode("debug") then
+        set_optimize("none")
+        set_symbols("debug")
+    end
 
-    -- Set C language standard, if needed (e.g., c99, c11)
+    set_targetdir("bin")
     set_languages("c17")
-
-    -- Add any necessary compile flags, if specific flags are needed
-      add_ldflags("-lm","-Wall" ,"-Wextra")
-
+   -- add_links("avformat", "avcodec", "ao", "m")
+target_end()
