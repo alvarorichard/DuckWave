@@ -7,7 +7,7 @@
 #include "../include/miniaudio.h"
 
 // para rodar e executar gcc -o audio_test test_playback_callback.c ../src/duckwave.c -Iinclude -lcmocka -lm              
-
+// para instalar o cmocka sudo apt install libcmocka-dev
 
 // Mock para ma_decoder_read_pcm_frames
 static ma_result mock_ma_decoder_read_pcm_frames(ma_decoder* pDecoder, void* pOutput, ma_uint64 frameCount, ma_uint64* pFramesRead) {
