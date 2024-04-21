@@ -52,12 +52,12 @@ function compile_statically {
 	printf "\033[36m[LOG]\033[m "
 	echo "Compiling the application with static libraries"
 	echo
-
 	eval "${COMPILER} playmp3.c main.c \
         -I${VENDOR_DIR}/libao_1.2.2/include -I${VENDOR_DIR}/mpg123_1.26.4/include \
         -L${VENDOR_DIR}/libao_1.2.2/lib -L${VENDOR_DIR}/mpg123_1.26.4/lib \
-        -lao -lmpg123 -lavcodec -lavformat -lswresample -lavutil -lm -lpthread -lz -lssl -lcrypto \
+          -std=c17 -lao -lmpg123 -lavcodec -lavformat -lswresample -lavutil -lm -lpthread -lz -lssl -lcrypto \
         -o playmp3"
+
 }
 
 function compile_shared {
@@ -67,7 +67,7 @@ function compile_shared {
 	echo
 
 	eval "${COMPILER} playmp3.c main.c \
-        -lao -lavcodec -lavformat -lswresample -lavutil \
+        -std=c17 -lao -lavcodec -lavformat -lswresample -lavutil \
         -o playmp3"
 }
 
@@ -76,7 +76,6 @@ if [ "${1}" = "--static" ] || [ "${1}" = "-s" ]; then
 else
 	compile_shared
 fi
-
 
 # sudo docker run --rm -it \
 #     --device /dev/snd \
@@ -88,4 +87,3 @@ fi
 #cd /usr/src/app/CSoundWave
 #./install.sh --static
 #./playmp3 /usr/src/app/CSoundWave/audios/1.mp3
-

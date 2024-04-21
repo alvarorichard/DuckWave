@@ -59,8 +59,3 @@ This will create an executable called mp3player in your current directory.
 * `isSpacePressed()`: Checks if the spacebar is pressed (non-blocking).
   
 
-### Note
-
-* Handle errors effectively in your application, especially where resources are initialized and used.
-* Avoid memory and resource leaks by freeing unused resources.
-* Please do not run the code in Zig, it is still in testing and development. It is the same project but rewritten in Zig. Please do not consider the Zig code

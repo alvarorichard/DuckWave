@@ -1,5 +1,0 @@
-src/libmpg123/dct36_avx.lo: src/libmpg123/dct36_avx.S \
- /usr/include/stdc-predef.h src/libmpg123/mangle.h src/config.h
-/usr/include/stdc-predef.h:
-src/libmpg123/mangle.h:
-src/config.h:

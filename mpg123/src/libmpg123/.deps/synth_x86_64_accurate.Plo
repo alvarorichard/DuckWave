@@ -1,6 +1,0 @@
-src/libmpg123/synth_x86_64_accurate.lo: \
- src/libmpg123/synth_x86_64_accurate.S /usr/include/stdc-predef.h \
- src/libmpg123/mangle.h src/config.h
-/usr/include/stdc-predef.h:
-src/libmpg123/mangle.h:
-src/config.h:
