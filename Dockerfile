@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /usr/src/app
 
 # Clona o repositório Git na branch dev
-RUN git clone -b dev https://github.com/alvarorichard/CSoundWave.git 
+RUN git clone -b dev https://github.com/alvarorichard/CSoundWave.git
 
 
 # Torna o script executável
