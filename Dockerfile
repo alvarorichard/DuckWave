@@ -1,5 +1,5 @@
 # Use uma imagem base com suporte para as ferramentas necessárias
-FROM ubuntu:22.04
+FROM ubuntu:mantic-20240416
 
 # Evita prompts interativos durante a instalação de pacotes
 ARG DEBIAN_FRONTEND=noninteractive
