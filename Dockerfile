@@ -1,5 +1,5 @@
 # Use uma imagem base com suporte para as ferramentas necessárias
-FROM ubuntu:22.04
+FROM ubuntu:mantic-20240416
 
 # Evita prompts interativos durante a instalação de pacotes
 ARG DEBIAN_FRONTEND=noninteractive
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /usr/src/app
 
 # Clona o repositório Git na branch dev
-RUN git clone -b dev https://github.com/alvarorichard/CSoundWave.git 
+RUN git clone -b dev https://github.com/alvarorichard/CSoundWave.git
 
 
 # Torna o script executável
