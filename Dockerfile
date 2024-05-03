@@ -5,7 +5,7 @@ FROM ubuntu:mantic-20240416
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Instala as ferramentas e bibliotecas necessárias
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     bash \
     clang \
     gcc \
