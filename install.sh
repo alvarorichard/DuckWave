@@ -12,7 +12,7 @@ function compile() {
   mkdir -p "$BUILD_DIR"
   
   # Compilar o projeto
-  $CC "$CFLAGS" -I"include" -o "$BUILD_DIR/$OUTPUT" "${SRC_FILES[@]}"
+  "$CC" "$CFLAGS" -I"include" -o "$BUILD_DIR/$OUTPUT" "${SRC_FILES[@]}"
   
   if [ $? -ne 0 ]; then
     echo "Erro na compilação do projeto"
