@@ -2,23 +2,23 @@
 
 # Função para compilar o projeto
 function compile() {
-  CC="clang"  # ou "gcc" se preferir
+  CC="clang" # ou "gcc" se preferir
   CFLAGS="-lm -O3"
   SRC_FILES=("src/main.c" "src/duckwave.c")
   OUTPUT="duckwave"
   BUILD_DIR="build"
-  
+
   # Criar diretório de build se não existir
   mkdir -p "$BUILD_DIR"
-  
+
   # Compilar o projeto
-  $CC $CFLAGS -I"include" -o "$BUILD_DIR/$OUTPUT" "${SRC_FILES[@]}"
-  
+  "$CC" "$CFLAGS" -I"include" -o "$BUILD_DIR/$OUTPUT" "${SRC_FILES[@]}"
+
   if [ $? -ne 0 ]; then
     echo "Erro na compilação do projeto"
     exit 1
   fi
-  
+
   echo "Projeto compilado com sucesso"
 }
 
