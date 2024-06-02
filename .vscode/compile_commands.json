@@ -1,0 +1,11 @@
+[
+{
+  "directory": "/home/krone/DuckWave",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-std=c17", "-Iinclude", "-o", "build/.objs/duckwave/linux/x86_64/src/main.c.o", "src/main.c"],
+  "file": "src/main.c"
+},
+{
+  "directory": "/home/krone/DuckWave",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-std=c17", "-Iinclude", "-o", "build/.objs/duckwave/linux/x86_64/src/duckwave.c.o", "src/duckwave.c"],
+  "file": "src/duckwave.c"
+}]

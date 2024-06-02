@@ -5,12 +5,14 @@ set_allowedmodes("debug", "release")
 set_defaultmode("debug")
 add_rules("mode.debug", "mode.release")
 
-toolchain("dwtc")  -- recomended toolchain
+toolchain("dwtc")  -- recommended toolchain
     set_kind("standalone")
 
     set_toolset("cc", "clang")
     set_toolset("cxx", "clang++", "clang")
-    set_toolset("ld", "clang", "clang++")
+    set_toolset("ld", "clang", { force = true })  -- ensure mold is used as linker
+    set_toolset("sh", "clang++", "clang")
+    set_toolset("ar", "llvm-ar")
 toolchain_end()
 
 target("duckwave")
@@ -29,5 +31,6 @@ target("duckwave")
 
     set_targetdir("bin")
     set_languages("c17")
-   -- add_links("avformat", "avcodec", "ao", "m")
+    add_ldflags("-fuse-ld=mold", { force = true })  -- add mold linker flag
+    -- add_links("avformat", "avcodec", "ao", "m")
 target_end()
