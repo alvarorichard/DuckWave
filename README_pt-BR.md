@@ -24,19 +24,13 @@ DUCKWAVE é um reprodutor de áudio simples, escrito em C, projetado para simpli
 
 Certifique-se de que você tenha as seguintes bibliotecas instaladas:
 
-* `libmpg123`
-* `libao`
-* `libavcodec`
-* `libavformat`
+* `xmake` sistema de compilação
 
-Em sistemas Debian/Ubuntu, você pode instalar estas usando:
 
-```bash
-sudo apt-get install libmpg123-dev libao-dev libavcodec-dev libavformat-dev
-```
+
 ### Compiling the Code
 ```bash
-clang main.c playmp3.c -o playmp3 -lmpg123 -lao -Bstatic                     
+xmake                   
 ```
 ### Compiling the Code with the Script
 ```bash
