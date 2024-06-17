@@ -24,20 +24,14 @@ DUCKWAVE is a straightforward audio player written in C, designed for simplicity
 
 Ensure you have the following libraries installed:
 
-* `libmpg123`
-* `libao`
-* `libavcodec`
-* `libavformat`
+* `xmake` build system
 
-On Debian/Ubuntu systems, you can install these using:
 
-```bash
-sudo apt-get install libmpg123-dev libao-dev libavcodec-dev libavformat-dev
-```
 ### Compiling the Code
 ```bash
-clang main.c playmp3.c -o playmp3 -lmpg123 -lao -Bstatic                     
+xmake
 ```
+
 ### Compiling the Code with the Script
 ```bash
 chmod +x install.sh
