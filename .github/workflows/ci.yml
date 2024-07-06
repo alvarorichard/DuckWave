@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake xmake 
+        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake 
 
     - name: Install xmake
       run: |
