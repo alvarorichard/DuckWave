@@ -34,4 +34,3 @@ add_ldflags("-fuse-ld=mold", {force = true}) -- add mold linker flag
 -- add_links("avformat", "avcodec", "ao", "m")
 add_links("ncurses", "m")
 target_end()
-
