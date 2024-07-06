@@ -1,5 +1,3 @@
-name: DuckWave CI
-
 name: C/C++ CI
 
 on:
@@ -52,4 +50,3 @@ jobs:
 
     - name: Build project
       run: xmake build
-      #
