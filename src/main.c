@@ -20,8 +20,8 @@ bool is_paused = false; // Variable to track pause state
 DuckWaveSoundData dw_sdata; // Declare dw_sdata in the global scope
 
 // Function to draw bar graphs and playback time
-void draw_bars_and_time(float *data, int count, float current_time,
-                        float total_time) {
+void draw_bars_and_time(float *data, int count, float current_time,float total_time) 
+{
   clear();
   int max_height = LINES - 3;
 
@@ -50,9 +50,8 @@ void draw_bars_and_time(float *data, int count, float current_time,
 }
 
 // Modified callback to capture audio data
-void duckwave_playback_callback_with_visual(ma_device *pDevice, void *pOutput,
-                                            const void *pInput,
-                                            unsigned int frameCount) {
+void duckwave_playback_callback_with_visual(ma_device *pDevice, void *pOutput, const void *pInput,unsigned int frameCount) 
+{
   ma_decoder *pDecoder = pDevice->pUserData;
   if (pDecoder == NULL)
     return;
@@ -81,22 +80,23 @@ void duckwave_playback_callback_with_visual(ma_device *pDevice, void *pOutput,
       ma_device_stop(pDevice); // Stop the device
     }
   } else {
-    memset(pOutput, 0,
-           frameCount * ma_get_bytes_per_frame(pDevice->playback.format,
-                                               pDevice->playback.channels));
+    memset(pOutput, 0,frameCount * ma_get_bytes_per_frame(pDevice->playback.format,pDevice->playback.channels));
   }
 
   (void)pInput;
 }
 
 // Cleanup function to ensure ncurses is correctly terminated
-void cleanup() {
+void cleanup()
+ {
+
   endwin();
   ma_device_uninit(&dw_sdata.device);
   fflush(stdout); // Clear the output buffer
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
   if (argc < 2) {
     printf("Usage: %s <audio_file>\n", argv[0]);
     return -1;
