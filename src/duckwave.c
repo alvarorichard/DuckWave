@@ -7,11 +7,11 @@
 
 /**
  * This function generates a timestamp string in the format hh:mm:ss or mm:ss from a float representing seconds.
- * 
+ *
  * @param secs The total time in seconds.
  * @param res The resulting formatted timestamp string. It should be large enough to hold the resulting string (128 bytes is assumed here).
  */
-void generate_timestamp(float secs, char* res) 
+void generate_timestamp(float secs, char* res)
 {
     int hours = (int)secs / 3600;
     secs = (int)secs % 3600;
@@ -26,13 +26,13 @@ void generate_timestamp(float secs, char* res)
 
 /**
  * This is the default playback callback function for miniaudio, which is called periodically to provide audio data for playback.
- * 
+ *
  * @param pDevice The audio device that is calling this callback.
  * @param pOutput Pointer to the buffer where audio data should be written.
  * @param _pInput Pointer to the buffer containing input audio data (unused here).
  * @param frameCount The number of audio frames to be processed.
  */
-void duckwave_default_playback_callback(ma_device* pDevice, void* pOutput, const void* _pInput, unsigned int frameCount) 
+void duckwave_default_playback_callback(ma_device* pDevice, void* pOutput, const void* _pInput, unsigned int frameCount)
 {
     ma_decoder *pDecoder = pDevice->pUserData;
 
@@ -46,7 +46,7 @@ void duckwave_default_playback_callback(ma_device* pDevice, void* pOutput, const
 
 /**
  * Initializes the file decoder using a given file path.
- * 
+ *
  * @param dw_sdata Pointer to the DuckWaveSoundData structure which holds the decoder and device configuration.
  * @param file Path to the audio file to be decoded.
  */
@@ -66,10 +66,10 @@ void duckwave_init_file_decoder(DuckWaveSoundData* dw_sdata, char* file)
 
 /**
  * Initializes the playback device configuration based on the decoder's output format, channels, and sample rate.
- * 
+ *
  * @param dw_sdata Pointer to the DuckWaveSoundData structure which holds the decoder and device configuration.
  */
-void duckwave_init_device_playback(DuckWaveSoundData* dw_sdata) 
+void duckwave_init_device_playback(DuckWaveSoundData* dw_sdata)
 {
     ma_decoder *decoder = &dw_sdata->decoder;
     ma_device_config *device_config = &dw_sdata->device_config;
@@ -85,10 +85,10 @@ void duckwave_init_device_playback(DuckWaveSoundData* dw_sdata)
 
 /**
  * Starts the audio playback on a separate thread using the initialized device and decoder.
- * 
+ *
  * @param dw_sdata Pointer to the DuckWaveSoundData structure which holds the decoder and device configuration.
  */
-void duckwave_start_playsound_thread(DuckWaveSoundData* dw_sdata) 
+void duckwave_start_playsound_thread(DuckWaveSoundData* dw_sdata)
 {
     ma_result result;
 

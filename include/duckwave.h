@@ -27,9 +27,9 @@ void duckwave_default_playback_callback(ma_device*, void*, const void*, unsigned
  * to start playing the specified music.
  */
 typedef struct DuckWaveSoundData {
-	ma_decoder decoder;
-	ma_device_config device_config;
-	ma_device device;
+    ma_decoder decoder;
+    ma_device_config device_config;
+    ma_device device;
 } DuckWaveSoundData;
 
 /**
