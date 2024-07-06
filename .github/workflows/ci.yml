@@ -21,16 +21,19 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $GITHUB_ENV
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     
-    - name: Setup Homebrew
-      run: echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile && source ~/.profile
-
     - name: Verify Homebrew installation
-      run: brew --version
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew --version
 
     - name: Install xmake and mold via Homebrew
       run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         brew install xmake
         brew install mold
 
@@ -43,9 +46,13 @@ jobs:
         cd ..
 
     - name: Configure xmake with mold linker
-      run: xmake f --toolchain=dwtc --plat=linux --arch=x86_64
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        xmake f --toolchain=dwtc --plat=linux --arch=x86_64
 
     - name: Build project
-      run: xmake build
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        xmake build
 
- 
+  
