@@ -24,6 +24,7 @@ jobs:
     - name: Install xmake
       run: |
         curl -fsSL https://xmake.io/shget.text | bash
+        sudo xmake update 2.8.9  # Ensure the correct xmake version is installed
 
     - name: Install xxHash
       run: |
@@ -43,11 +44,10 @@ jobs:
         cd ..
 
     - name: Configure xmake with mold linker
-      run: xmake f --ld=mold --plat=linux --arch=x86_64
+      run: xmake f --toolchain=dwtc --plat=linux --arch=x86_64
 
     - name: Build project
       run: xmake build
 
     - name: Run tests (if applicable)
-      run: xmake run duckwave
-# 
+      run: bin/duckwave  
