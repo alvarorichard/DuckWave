@@ -3,31 +3,28 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
-
 #include "./miniaudio.h"
 
 /**
- * Dado um tempo em segundos (`float`), essa função vai escrever na referencia
- * (`char*`) esse mesmo tempo mas no formato `hh:mm:ss`. Valores esperados
- * podem ser `72:43:05` ou `05:59`, por exemplo.
+ * Given a time in seconds (`float`), this function will write to the reference
+ * (`char*`) that same time but in the `hh:mm:ss` format. Expected values
+ * could be `72:43:05` or `05:59`, for example.
  */
 void generate_timestamp(float, char*);
 
-///  NOTE: Embaixo dessa função, deve haver outras similares; a documentação será a mesma.
-///  WARN: Todas as funções com `callback` no nome serão executadas em uma thread separada.
+///  NOTE: Below this function, there should be similar ones; the documentation will be the same.
+///  WARN: All functions with `callback` in the name will be executed in a separate thread.
 
 /**
- * Essas funções são responsáveis por ler os dados do objeto `decoder` pra
- * conseguir tocar a música de fato. Mas **atenção**, essas funções serão
- * executadas numa thread separada, cuidado na hora de programar!
+ * These functions are responsible for reading data from the `decoder` object to
+ * actually play the music. But **attention**, these functions will be executed
+ * in a separate thread, be careful when programming!
  */
 void duckwave_default_playback_callback(ma_device*, void*, const void*, unsigned int);
 
 /**
- * Struct com os objetos que o miniaudio precisa pra configurar um device novo
- * pra começar a tocar a música em questão.
+ * Struct with the objects that miniaudio needs to configure a new device
+ * to start playing the specified music.
  */
 typedef struct DuckWaveSoundData {
 	ma_decoder decoder;
@@ -36,22 +33,21 @@ typedef struct DuckWaveSoundData {
 } DuckWaveSoundData;
 
 /**
- * Inicia o decoder usando uma string com o caminho para o arquivo, talvez não
- * com alguns formatos como o MP4.
+ * Initializes the decoder using a string with the path to the file, maybe not
+ * with some formats like MP4.
  */
 void duckwave_init_file_decoder(DuckWaveSoundData*, char*);
 
 /**
- * Uma vez que o decoder já foi configurado, essa função vai simplesmente
- * construir o device pra tocar a música. Usando o tipo playback do miniaudio.
+ * Once the decoder is configured, this function will simply
+ * build the device to play the music using the miniaudio playback type.
  */
 void duckwave_init_device_playback(DuckWaveSoundData*);
 
-
 /**
- * Abstração para a biblioteca `miniaudio.h`, ela vai iniciar a rotina pra
- * tocar a música em background (numa thread separada); verificando e tratando
- * os erros a medida que eles vão aparecendo.
+ * Abstraction for the `miniaudio.h` library, it will start the routine to
+ * play the music in the background (in a separate thread); checking and handling
+ * errors as they appear.
  */
 void duckwave_start_playsound_thread(DuckWaveSoundData*);
 
