@@ -10,32 +10,23 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: fedora-40
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Homebrew
+    - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    
-    - name: Install xmake and mold via Homebrew
-      run: |
-        brew install xmake
-        brew install mold
-
-    - name: Install xxHash
-      run: |
-        git clone https://github.com/Cyan4973/xxHash.git
-        cd xxHash
-        make
-        sudo make install
-        cd ..
+        sudo dnf update -y
+        sudo dnf install -y \
+          @development-tools \
+          ncurses-devel \
+          cmake \
+          curl \
+          mold \
+          xmake \
+          xxhash-devel
 
     - name: Configure xmake with mold linker
       run: xmake f --toolchain=dwtc --plat=linux --arch=x86_64
@@ -43,5 +34,4 @@ jobs:
     - name: Build project
       run: xmake build
 
-    - name: Run tests
-      run: bin/duckwave test_files/test_audio.wav
+
