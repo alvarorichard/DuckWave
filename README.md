@@ -25,6 +25,10 @@ DUCKWAVE is a straightforward audio player written in C, designed for simplicity
 Ensure you have the following libraries installed:
 
 * `xmake` build system
+* `ncurses` library
+* `mold` linker
+
+
 
 
 ### Compiling the Code
