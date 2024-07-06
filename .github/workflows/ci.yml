@@ -1,0 +1,58 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Homebrew
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    
+    - name: Verify Homebrew installation
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew --version
+
+    - name: Install xmake and mold via Homebrew
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        brew install xmake
+        brew install mold
+
+    - name: Install xxHash
+      run: |
+        git clone https://github.com/Cyan4973/xxHash.git
+        cd xxHash
+        make
+        sudo make install
+        cd ..
+
+    - name: Configure xmake with mold linker
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        xmake f --toolchain=dwtc --plat=linux --arch=x86_64
+
+    - name: Build project
+      run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        xmake build
+
+  
