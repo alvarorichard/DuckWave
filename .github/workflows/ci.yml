@@ -16,17 +16,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install dependencies
+    - name: Install Homebrew
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl
-
-    - name: Install xmake
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    
+    - name: Install xmake and mold via Homebrew
       run: |
-        XMAKE_VERSION="2.9.3"
-        curl -L https://github.com/xmake-io/xmake/releases/download/v${XMAKE_VERSION}/xmake-${XMAKE_VERSION}.linux.amd64.tar.gz -o xmake.tar.gz
-        tar -xzf xmake.tar.gz
-        sudo mv xmake-${XMAKE_VERSION}/xmake /usr/local/bin/xmake
+        brew install xmake
+        brew install mold
 
     - name: Install xxHash
       run: |
@@ -36,20 +37,11 @@ jobs:
         sudo make install
         cd ..
 
-    - name: Install mold linker
-      run: |
-        MOLD_VERSION="2.32.1"
-        curl -LO https://github.com/rui314/mold/releases/download/v${MOLD_VERSION}/mold-${MOLD_VERSION}-x86_64-linux.tar.gz
-        tar -xzf mold-${MOLD_VERSION}-x86_64-linux.tar.gz
-        sudo cp mold-${MOLD_VERSION}-x86_64-linux/bin/* /usr/local/bin/
-        sudo cp -r mold-${MOLD_VERSION}-x86_64-linux/lib/* /usr/local/lib/
-        sudo cp -r mold-${MOLD_VERSION}-x86_64-linux/include/* /usr/local/include/
-        sudo cp -r mold-${MOLD_VERSION}-x86_64-linux/share/* /usr/local/share/
-
     - name: Configure xmake with mold linker
       run: xmake f --toolchain=dwtc --plat=linux --arch=x86_64
 
     - name: Build project
       run: xmake build
 
- 
+    - name: Run tests
+      run: bin/duckwave test_files/test_audio.wav
