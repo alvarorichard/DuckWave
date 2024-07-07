@@ -32,5 +32,5 @@ set_targetdir("bin")
 set_languages("c17")
 add_ldflags("-fuse-ld=mold", {force = true}) -- add mold linker flag
 -- add_links("avformat", "avcodec", "ao", "m")
-add_links("ncurses", "m")
+add_links("ncursesw", "m")
 target_end()
