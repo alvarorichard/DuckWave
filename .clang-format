@@ -1,0 +1,28 @@
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 80
+UseTab: Never
+
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: true
+IndentCaseLabels: false
+SpacesBeforeTrailingComments: 1
+AccessModifierOffset: -2
+BreakBeforeBraces: Linux

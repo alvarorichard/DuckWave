@@ -210,5 +210,5 @@ int main(int argc, char* argv[])
         printf("Playback finished. Exiting...\n");
     }
 
-    EXIT_SUCCESS    ;
+    EXIT_SUCCESS;
 }
