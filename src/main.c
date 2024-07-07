@@ -67,7 +67,7 @@ void duckwave_playback_callback_with_visual(ma_device* pDevice, void* pOutput, c
             float sum = 0;
             for (int j = 0; j < samples_per_bar; j++) 
             {
-                sum += fabs(audio_data[i * samples_per_bar + j]);
+                sum += fabsf(audio_data[i * samples_per_bar + j]); // Use fabsf for float
             }
             bar_data[i] = sum / samples_per_bar;
         }
