@@ -20,19 +20,21 @@ DUCKWAVE é um reprodutor de áudio simples, escrito em C, projetado para simpli
  ## Instalação
 
 
-#### Pré-requisitos
+ #### Pré-requisitos
 
 Certifique-se de que você tenha as seguintes bibliotecas instaladas:
 
 * `xmake` sistema de compilação
+* `ncurses` biblioteca
+* `mold` linker
 
 
 
-### Compiling the Code
+ ### Compilando o Código
 ```bash
 xmake                   
 ```
-### Compiling the Code with the Script
+ ### Compilar o Código com o Script
 ```bash
 chmod +x install.sh
 ```
@@ -43,7 +45,7 @@ chmod +x install.sh
 
 Isso criará um executável chamado mp3player no seu diretório atual.
 
-## Uso
+ ## Uso
 
 1. Adicione seu arquivo mp3 ao diretório do projeto.
 2. Na função main() do main.c, substitua "add you music here .mp3" pelo nome do seu arquivo mp3.
@@ -57,7 +59,7 @@ Isso criará um executável chamado mp3player no seu diretório atual.
 > Observe que este projeto ainda está em desenvolvimento e pode estar sujeito a alterações e melhorias.
 
 
-## Contribuindo
+ ## Contribuindo
 Contribuições para este projeto são bem-vindas. Por favor, siga estes passos para contribuir:
 
 1. Faça um fork do repositório.
