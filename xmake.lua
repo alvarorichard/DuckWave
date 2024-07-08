@@ -18,7 +18,7 @@ toolchain_end()
 target("duckwave")
 set_kind("binary")
 add_includedirs("include")
-add_files("src/main.c", "src/duckwave.c")
+add_files("src/main.c", "src/duckwave.c","src/animation.c")
 
 if is_mode("release") then
     set_optimize("fastest")
