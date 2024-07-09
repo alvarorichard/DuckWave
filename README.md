@@ -16,7 +16,7 @@
 
 DUCKWAVE is a straightforward audio player written in C, designed for simplicity and ease of use. It supports playing multiple audio formats and offers basic controls such as play, pause, and stop. The project is built with minimal dependencies and is focused on providing a user-friendly experience for playing audio files from the terminal.
 
-* Music "Phat Sketch" Kevin MacLeod from  (incompetech.com)
+* Music "Phat Sketch" Kevin MacLeod  (incompetech.com)
 
 Licensed under Creative Commons: By Attribution 4.0 License  [link](http://creativecommons.org/licenses/by/4.0/)
 
