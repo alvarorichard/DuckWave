@@ -16,6 +16,19 @@
 
 DUCKWAVE é um reprodutor de áudio simples, escrito em C, projetado para simplicidade e facilidade de uso. Ele suporta a reprodução de vários formatos de áudio e oferece controles básicos como reproduzir, pausar e parar. O projeto é construído com dependências mínimas e focado em fornecer uma experiência amigável ao usuário para reproduzir arquivos de áudio a partir do terminal.
 
+Música "Phat Sketch" de Kevin MacLeod (incompetech.com)
+
+Licenciada sob Creative Commons: By Attribution 4.0 License   [link](http://creativecommons.org/licenses/by/4.0/)
+
+https://github.com/alvarorichard/DuckWave/assets/88117897/80ba79bc-8d38-40e7-aa3b-b951fbaa9cf2
+
+## Formatos de Áudio Suportados
+
+- MP3
+- WAV
+- FLAC
+
+
 
  ## Instalação
 
