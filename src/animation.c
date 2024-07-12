@@ -1,3 +1,4 @@
+
 // File: src/animation.c
 #include <locale.h>
 #include <math.h>
