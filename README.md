@@ -13,6 +13,8 @@
 ![GitHub languages top](https://img.shields.io/github/languages/top/alvarorichard/DuckWave)
 ![GitHub last commit](https://img.shields.io/github/last-commit/alvarorichard/DuckWave)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f988a35b582642289c5ce2f35ab21b53)](https://app.codacy.com/gh/alvarorichard/DuckWave/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Build Status](https://github.com/alvarorichard/DuckWave/actions/workflows/ci.yml/badge.svg)](https://github.com/alvarorichard/DuckWave/actions) 
+![GitHub contributors](https://img.shields.io/github/contributors/alvarorichard/DuckWave)
 
 DUCKWAVE is a straightforward audio player written in C, designed for simplicity and ease of use. It supports playing multiple audio formats and offers basic controls such as play, pause, and stop. The project is built with minimal dependencies and is focused on providing a user-friendly experience for playing audio files from the terminal.
 
