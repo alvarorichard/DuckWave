@@ -31,14 +31,18 @@ jobs:
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         brew --version
 
-    - name: Install Clang via Homebrew
+    - name: Install Clang and Mold via Homebrew
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        brew install llvm
+        brew install llvm mold
         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.profile
         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.bashrc
         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
         export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"
+        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.profile
+        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.bashrc
+        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.zshrc
+        export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"
 
     - name: Install xmake via Homebrew
       run: |
@@ -53,15 +57,15 @@ jobs:
         sudo make install
         cd ..
 
-    - name: Configure xmake with Clang
+    - name: Configure xmake with Clang and Mold
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         export CC=clang
         export CXX=clang++
-        xmake f --cc=$(which clang) --cxx=$(which clang++) --ld=$(which clang++) --plat=linux --arch=x86_64 --mode=debug
-        xmake f --cflags="-fprofile-instr-generate -fcoverage-mapping" --cxxflags="-fprofile-instr-generate -fcoverage-mapping" --ldflags="-fprofile-instr-generate -fcoverage-mapping"
+        xmake f --cc=$(which clang) --cxx=$(which clang++) --ld=$(which clang++) --ldflags="-fuse-ld=mold" --plat=linux --arch=x86_64 --mode=debug
+        xmake f --cflags="-fprofile-instr-generate -fcoverage-mapping" --cxxflags="-fprofile-instr-generate -fcoverage-mapping"
 
-    - name: Build project with Clang
+    - name: Build project with Clang and Mold
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         export CC=clang
