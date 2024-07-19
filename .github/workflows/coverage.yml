@@ -31,11 +31,10 @@ jobs:
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         brew --version
 
-    - name: Install xmake and mold via Homebrew
+    - name: Install xmake via Homebrew
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         brew install xmake
-        brew install mold
 
     - name: Install xxHash
       run: |
@@ -45,16 +44,15 @@ jobs:
         sudo make install
         cd ..
 
-    - name: Configure xmake with Clang and mold linker
+    - name: Configure xmake with Clang
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        xmake f --cc=clang --cxx=clang++ --ld=mold --plat=linux --arch=x86_64 --mode=debug
+        xmake f --cc=clang --cxx=clang++ --plat=linux --arch=x86_64 --mode=debug
         xmake f --cflags="-fprofile-instr-generate -fcoverage-mapping" --cxxflags="-fprofile-instr-generate -fcoverage-mapping" --ldflags="-fprofile-instr-generate -fcoverage-mapping"
 
     - name: Build project with Clang
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        xmake f --cc=clang --cxx=clang++ --ld=mold --plat=linux --arch=x86_64
         xmake build
 
     - name: Run tests and generate coverage data
