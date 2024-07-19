@@ -19,7 +19,7 @@ jobs:
     - name: Install Homebrew
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl lcov
+        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl llvm clang lcov
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
@@ -45,22 +45,22 @@ jobs:
         sudo make install
         cd ..
 
-    - name: Configure xmake with mold linker
+    - name: Configure xmake with Clang and mold linker
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        xmake f --toolchain=dwtc --plat=linux --arch=x86_64
+        xmake f --cc=clang --cxx=clang++ --ld=mold --plat=linux --arch=x86_64 --mode=coverage
 
     - name: Build project
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         xmake build
 
-    - name: Generate coverage report
+    - name: Run tests and generate coverage data
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        lcov --capture --directory . --output-file coverage.info
-        lcov --remove coverage.info '/usr/*' --output-file coverage.info
-        lcov --list coverage.info
+        xmake run
+        llvm-profdata merge -sparse default.profraw -o default.profdata
+        llvm-cov export -format=lcov -instr-profile=default.profdata $(find . -name "*.o") > coverage.info
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
