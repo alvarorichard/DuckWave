@@ -51,9 +51,10 @@ jobs:
         xmake f --cc=clang --cxx=clang++ --ld=mold --plat=linux --arch=x86_64 --mode=debug
         xmake f --cflags="-fprofile-instr-generate -fcoverage-mapping" --cxxflags="-fprofile-instr-generate -fcoverage-mapping" --ldflags="-fprofile-instr-generate -fcoverage-mapping"
 
-    - name: Build project
+    - name: Build project with Clang
       run: |
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        xmake f --cc=clang --cxx=clang++ --ld=mold --plat=linux --arch=x86_64
         xmake build
 
     - name: Run tests and generate coverage data
