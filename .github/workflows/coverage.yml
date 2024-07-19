@@ -1,88 +1,88 @@
-name: C/C++ CodeCov
+# name: C/C++ CodeCov
 
-on:
-  push:
-    branches: [ main, dev ]
-  pull_request:
-    branches: [ main, dev ]
-  schedule:
-    - cron: '0 0 * * *'
+# on:
+#   push:
+#     branches: [ main, dev ]
+#   pull_request:
+#     branches: [ main, dev ]
+#   schedule:
+#     - cron: '0 0 * * *'
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
 
-    - name: Install Homebrew
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl lcov
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#     - name: Install Homebrew
+#       run: |
+#         sudo apt-get update
+#         sudo apt-get install -y build-essential libncurses5-dev libncursesw5-dev cmake curl lcov
+#         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+#         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+#         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     
-    - name: Verify Homebrew installation
-      run: |
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        brew --version
+#     - name: Verify Homebrew installation
+#       run: |
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#         brew --version
 
-    - name: Install Clang and Mold via Homebrew
-      run: |
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        brew install llvm mold
-        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.profile
-        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.bashrc
-        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
-        export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"
-        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.profile
-        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.bashrc
-        echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.zshrc
-        export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"
+#     - name: Install Clang and Mold via Homebrew
+#       run: |
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#         brew install llvm mold
+#         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.profile
+#         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.bashrc
+#         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
+#         export PATH="/home/linuxbrew/.linuxbrew/opt/llvm/bin:$PATH"
+#         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.profile
+#         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.bashrc
+#         echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"' >> ~/.zshrc
+#         export PATH="/home/linuxbrew/.linuxbrew/opt/mold/bin:$PATH"
 
-    - name: Install xmake via Homebrew
-      run: |
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        brew install xmake
+#     - name: Install xmake via Homebrew
+#       run: |
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#         brew install xmake
 
-    - name: Install xxHash
-      run: |
-        git clone https://github.com/Cyan4973/xxHash.git
-        cd xxHash
-        make
-        sudo make install
-        cd ..
+#     - name: Install xxHash
+#       run: |
+#         git clone https://github.com/Cyan4973/xxHash.git
+#         cd xxHash
+#         make
+#         sudo make install
+#         cd ..
 
-    - name: Configure xmake with Clang and Mold
-      run: |
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        export CC=clang
-        export CXX=clang++
-        xmake f --cc=$(which clang) --cxx=$(which clang++) --ld=$(which clang++) --ldflags="-fuse-ld=mold" --plat=linux --arch=x86_64 --mode=debug
-        xmake f --cflags="-fprofile-instr-generate -fcoverage-mapping" --cxxflags="-fprofile-instr-generate -fcoverage-mapping"
+#     - name: Configure xmake with Clang and Mold
+#       run: |
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#         export CC=clang
+#         export CXX=clang++
+#         xmake f --cc=$(which clang) --cxx=$(which clang++) --ld=$(which clang++) --ldflags="-fuse-ld=mold" --plat=linux --arch=x86_64 --mode=debug
+#         xmake f --cflags="-fprofile-instr-generate -fcoverage-mapping" --cxxflags="-fprofile-instr-generate -fcoverage-mapping"
 
-    - name: Build project with Clang and Mold
-      run: |
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        export CC=clang
-        export CXX=clang++
-        xmake build
+#     - name: Build project with Clang and Mold
+#       run: |
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#         export CC=clang
+#         export CXX=clang++
+#         xmake build
 
-    - name: Run tests and generate coverage data
-      run: |
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        xmake run
-        llvm-profdata merge -sparse default.profraw -o default.profdata
-        llvm-cov export -format=lcov -instr-profile=default.profdata $(find . -name "*.o") > coverage.info
+#     - name: Run tests and generate coverage data
+#       run: |
+#         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#         xmake run
+#         llvm-profdata merge -sparse default.profraw -o default.profdata
+#         llvm-cov export -format=lcov -instr-profile=default.profdata $(find . -name "*.o") > coverage.info
 
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v4.0.1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: coverage.info
-        flags: unittests
-        name: codecov-umbrella
+#     - name: Upload coverage reports to Codecov
+#       uses: codecov/codecov-action@v4.0.1
+#       with:
+#         token: ${{ secrets.CODECOV_TOKEN }}
+#         files: coverage.info
+#         flags: unittests
+#         name: codecov-umbrella
